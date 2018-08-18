@@ -1,5 +1,5 @@
-const express = require('express');
-const bp = require('body-parser');
+const app = require('./src/main.js');
+let port = 3000;
 
-const app = express();
-
+app.listen(port);
+console.log('listening on http://localhost:' + port);
