@@ -59,3 +59,10 @@ typings/
 
 # next.js build output
 .next
+
+
+# CUSTOMS
+
+# Ignore production and dev config files (maybe add dev later)
+src/conf/dev.js
+src/conf/prod.js
