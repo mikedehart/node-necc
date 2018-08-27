@@ -1,0 +1,367 @@
+/* #Font-Face
+================================================ */
+@import url(https://fonts.googleapis.com/css?family=Alfa+Slab+One);
+
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto+Slab|Roboto:400,700');
+
+@import url("https://fonts.googleapis.com/css?family=Oswald:400,700");
+
+/* FONT REQUIREMENT 
+@import url("//fast.fonts.com/t/1.css?apiType=css&projectid=6fe039dd-823f-4dfb-96d8-45216869a97c");
+ END FONT REQUIREMENT */
+
+/* Trade Gothic   
+@font-face { 
+    font-family: "Trade Gothic";
+    src:url("../fonts/413d9688-00d4-47c4-bb55-656a0cd396e9.eot?#iefix");
+    src:url("../fonts/413d9688-00d4-47c4-bb55-656a0cd396e9.eot?#iefix") format("eot"),
+        url("../fonts/c4aef0d4-bfcf-4790-acf5-909881f411e8.woff") format("woff"),
+        url("../fonts/e741f29c-bc18-4343-bff3-db2465a0be3e.ttf") format("truetype"),
+        url("../fonts/853e2a9b-4057-42a5-ad7e-0762cda0b13c.svg#853e2a9b-4057-42a5-ad7e-0762cda0b13c") format("svg");
+	font-weight: normal;
+	font-style: normal;
+	}
+
+@font-face { 
+	font-family: "Trade Gothic";
+    src:url("../fonts/59fa12c0-25c9-4c0c-bd1e-32204311d86d.eot?#iefix");
+    src:url("../fonts/59fa12c0-25c9-4c0c-bd1e-32204311d86d.eot?#iefix") format("eot"),
+        url("../fonts/1c164451-034c-41f5-9542-390709016510.woff") format("woff"),
+        url("../fonts/7062b4ff-265a-4366-b34f-443ec5cc2dad.ttf") format("truetype"),
+        url("../fonts/09f52831-e1cf-48be-9c1e-2d1577e420b7.svg#09f52831-e1cf-48be-9c1e-2d1577e420b7") format("svg");
+	font-weight: normal;
+	font-style: italic;
+	}
+
+@font-face { 
+	font-family: "Trade Gothic";
+    src:url("../fonts/bb3aa0a7-2585-4e89-ad82-658fd561751a.eot?#iefix");
+    src:url("../fonts/bb3aa0a7-2585-4e89-ad82-658fd561751a.eot?#iefix") format("eot"),
+        url("../fonts/1454a71d-cdbb-429c-8092-122f4493e0c7.woff") format("woff"),
+        url("../fonts/d5ea405c-2180-4ff0-bd51-3e19fb280be4.ttf") format("truetype"),
+        url("../fonts/70ac6679-cf48-4a0e-a909-d1e3bb4a1aa9.svg#70ac6679-cf48-4a0e-a909-d1e3bb4a1aa9") format("svg");
+	font-weight: bold;
+	font-style: normal;
+	}
+
+@font-face { 
+	font-family: "Trade Gothic";
+    src:url("../fonts/363fd092-cd55-4bd1-bdc5-cfc9a7057517.eot?#iefix");
+    src:url("../fonts/363fd092-cd55-4bd1-bdc5-cfc9a7057517.eot?#iefix") format("eot"),
+        url("../fonts/25f577c3-f32b-4fbf-b684-3e7c1a76d1ea.woff") format("woff"),
+        url("../fonts/2ed49e17-92ad-4026-9ae6-d20f88f21840.ttf") format("truetype"),
+        url("../fonts/969cd675-2b4c-4baa-ada6-62bb7ace778f.svg#969cd675-2b4c-4baa-ada6-62bb7ace778f") format("svg");
+	font-weight: bold;
+	font-style: italic;
+	}
+
+@font-face { 
+    font-family: "Trade Gothic Light";
+    src:url("../fonts/1d699af3-0e50-4c4b-a343-42d071e85714.eot?#iefix");
+    src:url("../fonts/1d699af3-0e50-4c4b-a343-42d071e85714.eot?#iefix") format("eot"),
+        url("../fonts/537b145a-6a7d-4787-81d9-7228d3a42458.woff") format("woff"),
+        url("../fonts/8e50278c-45cd-4808-b774-24767d958f17.ttf") format("truetype"),
+        url("../fonts/d918b947-5fcb-42e2-8286-a98a801876de.svg#d918b947-5fcb-42e2-8286-a98a801876de") format("svg");
+	font-weight: normal;
+	font-style: normal;
+	}
+
+@font-face { 
+	font-family: "Trade Gothic Light";
+    src:url("../fonts/b1721311-de06-4277-8dcb-bf39e072b75e.eot?#iefix");
+    src:url("../fonts/b1721311-de06-4277-8dcb-bf39e072b75e.eot?#iefix") format("eot"),
+        url("../fonts/c357a65e-dd87-4d11-8063-db04802d44c0.woff") format("woff"),
+        url("../fonts/6b9ca17d-cb9d-43bb-8b43-93670b45b83f.ttf") format("truetype"),
+        url("../fonts/198ed3e2-0cdf-496f-a0ef-86da8d4dde55.svg#198ed3e2-0cdf-496f-a0ef-86da8d4dde55") format("svg");
+	font-weight: normal;
+	font-style: italic;
+	}
+
+
+@font-face { 
+    font-family: "Trade Gothic Condensed";
+    src:url("../fonts/087e5c21-3358-4cf3-9d2c-289a03a48292.eot?#iefix");
+    src:url("../fonts/087e5c21-3358-4cf3-9d2c-289a03a48292.eot?#iefix") format("eot"),
+        url("../fonts/fb754dec-aa8f-444c-be48-868464c47ab0.woff") format("woff"),
+        url("../fonts/295ff20c-2b48-4fa6-be92-a53bbf9bbbb4.ttf") format("truetype"),
+        url("../fonts/c573d9d0-0726-4b95-aeee-fb621a299563.svg#c573d9d0-0726-4b95-aeee-fb621a299563") format("svg");
+
+	font-weight: normal;
+	font-style: normal;
+	}
+
+@font-face { 
+	font-family: "Trade Gothic Condensed";
+    src:url("../fonts/257c802f-349c-4b4d-aefa-546d5de15ec6.eot?#iefix");
+    src:url("../fonts/257c802f-349c-4b4d-aefa-546d5de15ec6.eot?#iefix") format("eot"),
+        url("../fonts/5fdc935e-9e30-442a-bbe9-8d887b858471.woff") format("woff"),
+        url("../fonts/616c4c87-a077-43f4-a9f4-f01267c13818.ttf") format("truetype"),
+        url("../fonts/c901ad5f-a842-4549-a1f4-583a97f7e169.svg#c901ad5f-a842-4549-a1f4-583a97f7e169") format("svg");
+
+	font-weight: bold;
+	font-style: normal;
+	}
+
+	*/
+
+@font-face{
+    font-family: "Goudy";
+    src:url("../fonts/0dc775be-1346-4c48-a41e-60b6c8167465.eot?#iefix");
+    src:url("../fonts/0dc775be-1346-4c48-a41e-60b6c8167465.eot?#iefix") format("eot"),
+        url("../fonts/10dfdd3b-578a-4a7f-b756-c0f49d27ce3a.woff") format("woff"),
+        url("../fonts/1f6a7a51-ceed-4d96-8e25-44da3375be83.ttf") format("truetype"),
+        url("../fonts/2cc35ff9-f4b4-4b2b-a51d-4b40c36bc84f.svg#2cc35ff9-f4b4-4b2b-a51d-4b40c36bc84f") format("svg");
+	font-weight: normal;
+	font-style: normal;
+	}
+
+@font-face{
+    font-family: "Goudy";
+    src:url("../fonts/329dae4d-d4ed-4c25-9ff8-258ffe914e7e.eot?#iefix");
+    src:url("../fonts/329dae4d-d4ed-4c25-9ff8-258ffe914e7e.eot?#iefix") format("eot"),
+        url("../fonts/d97d374d-cd95-4df0-b2d6-0fd2d2723eaf.woff") format("woff"),
+        url("../fonts/1b36f00c-afcb-4974-946b-6aa6f3ea7315.ttf") format("truetype"),
+        url("../fonts/d634ba7d-b08e-483a-a4f3-72f5db60e074.svg#d634ba7d-b08e-483a-a4f3-72f5db60e074") format("svg");
+	font-weight: normal;
+	font-style: italic;
+	}
+
+@font-face{
+    font-family: "Goudy";
+    src:url("../fonts/a9d9d58e-b1c9-4ce7-bd10-1d21f9b7d147.eot?#iefix");
+    src:url("../fonts/a9d9d58e-b1c9-4ce7-bd10-1d21f9b7d147.eot?#iefix") format("eot"),
+        url("../fonts/339f40a3-611d-42a2-89e0-c8a6d03ec38e.woff") format("woff"),
+        url("../fonts/a68b9c33-ba16-4a13-902c-06bfa97aced7.ttf") format("truetype"),
+        url("../fonts/50abb585-da00-43ca-a6af-1d4623c14a91.svg#50abb585-da00-43ca-a6af-1d4623c14a91") format("svg");
+	font-weight: bold;
+	font-style: normal;
+	}
+
+@font-face{
+    font-family: "Goudy";
+    src:url("../fonts/9b35fecc-f07d-454a-b3aa-09a7340b9cfd.eot?#iefix");
+    src:url("../fonts/9b35fecc-f07d-454a-b3aa-09a7340b9cfd.eot?#iefix") format("eot"),
+        url("../fonts/c15c2f65-7bca-40dc-86db-ced19c132247.woff") format("woff"),
+        url("../fonts/6a18d8f5-dd8d-4c81-b624-132dd04f044f.ttf") format("truetype"),
+        url("../fonts/562308c1-fdc9-4076-afa4-50947ecf709e.svg#562308c1-fdc9-4076-afa4-50947ecf709e") format("svg");
+	font-weight: bold;
+	font-style: italic;
+	}
+
+@font-face{
+    font-family:"ZapfinoExtraLTW01-Three";
+    src:url("../fonts/0e1be940-9227-48d4-9c16-4bc7f5b80fa1.eot?#iefix");
+    src:url("../fonts/0e1be940-9227-48d4-9c16-4bc7f5b80fa1.eot?#iefix") format("eot"),
+        url("../fonts/4ebc8e5a-dfcc-4704-ace3-b66405306a9b.woff") format("woff"),
+        url("../fonts/94b611c5-e586-441e-b241-a69ba1f9ff10.ttf") format("truetype"),
+        url("../fonts/552fee16-e2c9-409d-9443-54c2c8cd95d8.svg#552fee16-e2c9-409d-9443-54c2c8cd95d8") format("svg");
+}
+
+/* FG Saga */    
+@font-face { 
+    font-family: "FG Saga";
+    src:url("../fonts/FGSaga.eot?#iefix");
+    src:url("../fonts/FGSaga.eot?#iefix") format("eot"),
+        url("../fonts/FGSaga.woff") format("woff"),
+        url("../fonts/FGSaga.ttf") format("truetype"),
+        url("../fonts/FGSaga.svg#FGSaga") format("svg");
+    font-weight: normal;
+	font-style: normal;
+	}
+
+	
+/* Icons */
+@font-face {
+	font-family: 'clemson-icons';
+	src:url('../fonts/clemson-icons.eot');
+	src:url('../fonts/clemson-icons.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/clemson-icons.woff') format('woff'),
+		url('../fonts/clemson-icons.ttf') format('truetype'),
+		url('../fonts/clemson-icons.svg#clemson-icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[data-icon]:before {
+	font-family: 'clemson-icons';
+	content: attr(data-icon);
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+[class*="icon-"] {
+	font-family: 'clemson-icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+[class*="icon-"] {
+	font-family: 'clemson-icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-paw:before, .sidr-class-icon-paw:before { content: "\e018"; }
+.icon-ring:before { content: "\e00b"; }
+.icon-seal:before { content: "\e016"; }
+.icon-seal2:before { content: "\e017"; }
+.icon-tv:before { content: "\e009"; }
+.icon-tigerrag:before { content: "\e60b"; }
+
+.icon-youtube:before { content: "\e007"; }
+.icon-facebook:before {	content: "\e005"; }
+.icon-facebook-like:before { content: "\e01f"; }
+.icon-twitter:before { content: "\e006"; }
+.icon-flickr:before { content: "\e008"; }
+.icon-google-plus:before { content: "\e024"; }
+.icon-pinterest:before { content: "\e025"; }
+.icon-foursquare:before { content: "\e026"; }
+.icon-linkedin:before { content: "\e027"; }
+.icon-wordpress:before { content: "\e028"; }
+.icon-instagram:before { content: "\e032"; }
+.icon-rss:before { content: "\e004"; }
+
+.icon-calendar:before { content: "\e00e"; }
+.icon-time:before { content: "\e002"; }
+.icon-location:before {	content: "\e003"; }
+.icon-gps:before { content: "\e949"; }
+.icon-compass:before { content: "\e94a"; }
+.icon-map:before { content: "\e94b"; }
+
+.icon-home:before { content: "\e603"; }
+.icon-home2:before { content: "\e902"; }
+.icon-checkmark:before { content: "\e370"; }
+.icon-refresh:before { content: "\e012"; }
+.icon-search:before, .sidr-class-icon-search:before { content: "\e001"; }
+.icon-grid:before { content: "\e030"; }
+.icon-menu:before {	content: "\f0c9"; }
+.icon-loading:before {	content: "\e97c"; }
+.icon-lock:before {	content: "\e98f"; }
+.icon-alert:before { content: "\ea07"; }
+
+.icon-close:before { content: "\e01a"; }
+.icon-close-light:before { content: "\e117"; }
+.icon-close-bold:before { content: "\ea0f"; }
+.icon-plus:before {	content: "\e019"; }
+.icon-cancel:before { content: "\e366"; }
+
+.icon-down:before { content: "\e601"; }
+.icon-up:before { content: "\e602"; }
+.icon-arrow-left:before { content: "\e013"; }
+.icon-arrow-right:before { content: "\e014"; }
+.icon-arrow-down:before { content: "\e015"; }
+.icon-scroll-down:before { content: "\e01b"; }
+
+.icon-play:before { content: "\e903"; }
+.icon-play-thin:before { content: "\e606"; }
+.icon-pause:before { content: "\e904"; }
+.icon-stop:before { content: "\e905"; }
+
+.icon-writer:before { content: "\e00a"; }
+.icon-category:before { content: "\e00c"; }
+.icon-heart:before { content: "\e00d"; }
+.icon-comments:before { content: "\e000"; }
+.icon-tag:before { content: "\e010"; }
+
+.icon-handicap:before { content: "\e604"; }
+.icon-vending:before { content: "\e605"; }
+.icon-retail:before { content: "\e607"; }
+.icon-administrative:before { content: "\e609"; }
+.icon-dining:before { content: "\e60a"; }
+.icon-dining2:before { content: "\e614"; }
+.icon-parking:before { content: "\e60d"; }
+.icon-lab:before { content: "\e60e"; }
+.icon-printer:before { content: "\e60f"; }
+.icon-recreation:before { content: "\e610"; }
+.icon-visitor:before { content: "\e611"; }
+.icon-academic:before { content: "\e612"; }
+.icon-emergency:before { content: "\e608"; }
+.icon-emergency-square:before { content: "\e613"; }
+
+.icon-grad-hat:before { content: "\e076"; }
+.icon-pencil:before { content: "\e01e"; }
+.icon-camera:before { content: "\e011"; }
+.icon-camera-play:before { content: "\e900"; }
+
+.icon-gift:before {	content: "\e00f"; }
+.icon-apple:before { content: "\e01c"; }
+.icon-pictures:before {	content: "\e01d"; }
+.icon-pie:before { content: "\e020"; }
+.icon-briefcase:before { content: "\e021"; }
+.icon-tools:before { content: "\e022"; }
+.icon-feather:before { content: "\e023"; }
+.icon-newspaper:before { content: "\e029"; }
+.icon-atom:before { content: "\e02a"; }
+.icon-earth:before { content: "\e02b"; }
+.icon-book:before { content: "\e02c"; }
+.icon-trophy:before { content: "\e02d"; }
+.icon-steps:before { content: "\e02e"; }
+.icon-history:before { content: "\e02f"; }
+.icon-cog:before { content: "\e031"; }
+.icon-wrench:before { content: "\e034"; }
+.icon-hammer:before { content: "\e996"; }
+.icon-bus:before { content: "\e033"; }
+.icon-screen:before { content: "\e617"; }
+.icon-television:before { content: "\e600"; }
+
+.icon-apply:before { content: "\e914"; }
+.icon-checklist:before { content: "\e901"; }
+.icon-more-info:before { content: "\ed61"; }
+.icon-upload:before { content: "\ec78"; }
+.icon-plus-light:before { content: "\ed5a"; }
+.icon-arrow-left-fat:before { content: "\edcf"; }
+.icon-arrow-right-fat:before { content: "\edcb"; }
+
+
+/** BRANDING COLORS **/
+.orangeBG { background-color: #F66733; }
+.blueRidgeBG { background-color: #3A4958; }
+.innovationBG { background-color: #86898C; }
+.regaliaBG { background-color: #522D80; }
+.moonBG { background-color: #D4C99E; }
+.brickBG { background-color: #A25016; }
+.rockBG { background-color: #685C53; }
+.oakBG { background-color: #562E19; }
+.bowmanBG { background-color: #566127; }
+.laceBG { background-color: #F9E498; }
+.calhounBG { background-color: #B5C327; }
+.gamedayBG { background-color: #109DC0; }
+.bengalBG { background-color: #000000; }
+.forthillBG { background-color: #FFFFFF; }
+.orangeTxt { color: #F66733; }
+.blueRidgeTxt { color: #3A4958; }
+.innovationTxt { color: #86898C; }
+.regaliaTxt { color: #522D80; }
+.moonTxt { color: #D4C99E; }
+.brickTxt { color: #A25016; }
+.rockTxt { color: #685C53; }
+.oakTxt { color: #562E19; }
+.bowmanTxt { color: #566127; }
+.laceTxt { color: #F9E498; }
+.calhounTxt { color: #B5C327; }
+.gamedayTxt { color: #109DC0; }
+.bengalTxt { color: #000000; }
+.forthillTxt { color: #FFFFFF; }
