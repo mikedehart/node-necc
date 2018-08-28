@@ -1,0 +1,89 @@
+extends layout.pug
+
+block header
+	div(class="jumbotron event-jumbo p-3 p-md-5 text-white bg-dark")
+		div(class="col-md-6 px-0")
+			h1(class="display-4 font-bold") Events
+			p(class="lead my-3") Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.
+			p(class="lead mb-0")
+				a(href="#" class="text-white font-weight-bold") See Full Calendar...
+
+block content
+	div(class="row")
+		h3(class="display-3 font-italic mb-5") Upcoming Events
+	div(class="row")
+		div(class="col-md-3")
+			div(class="card")
+				img(class="card-img-top" data-src="holder.js/286x180/auto" alt="500x500" style="width: 100%; height: 180px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1655e8155a3%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1655e8155a3%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.1328125%22%20y%3D%22261.278125%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true")
+				//img(class="card-img-top" alt="Calendar Image" src="img/stadium2.jpg" style="width: 100%; height: 180px;")
+				div(class="card-body")
+					h5(class="card-title") Title
+					p(class="card-text") Quick example test card
+					a(class="btn btn-carousel" href="#") View in Calendar
+		div(class="col-md-3")
+			div(class="card")
+				div(class="jumbotron jumbotron-fluid p-md-3 text-white bg-dark" style="height: 100px; width: 100%;")
+					h1(class="text-center font-italic") Sept 24
+				//img(class="card-img-top" data-src="holder.js/286x180/auto" alt="500x500" style="width: 100%; height: 180px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1655e8155a3%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1655e8155a3%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.1328125%22%20y%3D%22261.278125%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true")
+				//img(class="card-img-top" alt="Calendar Image" src="img/stadium2.jpg" style="width: 100%; height: 180px;")
+				div(class="card-body")
+					h5(class="card-title") Title
+					p(class="card-text") Quick example test card
+					a(class="btn btn-carousel" href="#") View in Calendar
+
+		div(class="col-md-3")
+			div(class="card")
+				img(class="card-img-top" data-src="holder.js/286x180/auto" alt="500x500" style="width: 100%; height: 180px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1655e8155a3%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1655e8155a3%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.1328125%22%20y%3D%22261.278125%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true")
+				//img(class="card-img-top" alt="Calendar Image" src="img/stadium2.jpg" style="width: 100%; height: 180px;")
+				div(class="card-body")
+					h5(class="card-title") Title
+					p(class="card-text") Quick example test card
+					a(class="btn btn-carousel" href="#") View in Calendar
+
+		div(class="col-md-3")
+			div(class="card")
+				img(class="card-img-top" data-src="holder.js/286x180/auto" alt="500x500" style="width: 100%; height: 180px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22286%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1655e8155a3%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1655e8155a3%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.1328125%22%20y%3D%22261.278125%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true")
+				//img(class="card-img-top" alt="Calendar Image" src="img/stadium2.jpg" style="width: 100%; height: 180px;")
+				div(class="card-body")
+					h5(class="card-title") Title
+					p(class="card-text") Quick example test card
+					a(class="btn btn-carousel" href="#") View in Calendar
+
+	hr(class="featurette-divider")
+
+	// --- Featurette One ---
+	div(class="row featurette")
+		div(class="col-md-7")
+			h2(class="featurette-heading") First featurette header. 
+				span(class="text-muted") Blah blah blah!
+			p(class="lead") Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+		div(class="col-md-5")
+			img(class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1655e8155a3%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1655e8155a3%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.1328125%22%20y%3D%22261.278125%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true")
+
+	hr(class="featurette-divider")
+
+	// --- Featurette Two ---
+	div(class="row featurette")
+		div(class="col-md-7 order-md-2")
+			h2(class="featurette-heading") First featurette header. 
+				span(class="text-muted") Hello World!
+			p(class="lead") Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+		div(class="col-md-5 order-md-1")
+			img(class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1655e8155a3%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1655e8155a3%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.1328125%22%20y%3D%22261.278125%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true")
+
+	hr(class="featurette-divider")
+
+	// --- Featurette Three ---
+	div(class="row featurette")
+		div(class="col-md-7")
+			h2(class="featurette-heading") Third featurette header. 
+				span(class="text-muted") Muted text!
+			p(class="lead") Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+		div(class="col-md-5")
+			img(class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px; height: 500px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22500%22%20height%3D%22500%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20500%20500%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_1655e8155a3%20text%20%7B%20fill%3A%23AAAAAA%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A25pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_1655e8155a3%22%3E%3Crect%20width%3D%22500%22%20height%3D%22500%22%20fill%3D%22%23EEEEEE%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22185.1328125%22%20y%3D%22261.278125%22%3E500x500%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true")
+
+	hr(class="featurette-divider")
+
+
+block scripts
+

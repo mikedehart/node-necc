@@ -16,4 +16,8 @@ app.get('/', (req, res, next) => {
 	res.render('index');
 })
 
+app.get('/events', (req, res, next) => {
+	res.render('events');
+})
+
 module.exports = app;
