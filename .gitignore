@@ -62,10 +62,10 @@ typings/
 
 
 # CUSTOMS
+# ===============================================
 
-# Ignore production and dev config files (maybe add dev later)
-src/conf/dev.js
-src/conf/prod.js
+# Ignore active config file (added config template)
+src/conf/conf.js
 
 # Misc
-views/template.html
+# views/template.html
