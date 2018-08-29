@@ -99,16 +99,7 @@ div.footer-social div a:hover {
   }
 
 
-/* CUSTOMIZE THE JUMBOTRON
--------------------------------------------------- */
 
-div.event-jumbo {
-  background-image: url('../img/stadium.jpg');
-  background-position: 0% 75%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #F66733;
-}
 
 
 
@@ -144,6 +135,103 @@ div.event-jumbo {
 }
 
 
+
+/* EVENTS PAGE
+-------------------------------------------------- */
+
+/* JUMBOTRON HEADER
+==================== */
+
+div.event-jumbo {
+  background-image: url('../img/stadium.jpg');
+  background-position: 0% 75%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #F66733;
+}
+
+
+
+/* CALENDAR CARDS
+==================== */
+
+/* ----TITLE---- */
+.main-event-head {
+  background-image: url('../img/grass.jpg');
+  background-position: 0% 0%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 0;
+}
+
+.main-event-head h1 {
+  color: #FFF;
+}
+
+/* ----BODY---- */
+
+.main-event-body .main-event-time:before, 
+.main-event-body .main-event-location:before, 
+.main-event-body .main-event-date:before{
+  margin-right: .3125em;
+  color: #F66733;
+  font-family: "clemson-icons";
+}
+
+.main-event-body {
+  color: #566127;
+  background-color: rgba(249, 228, 152, 0.5);
+}
+
+/* ----DATE---- */
+
+.main-event-body .main-event-date:before {
+  content: "\e00e";
+}
+
+.main-event-body .main-event-date {
+  
+}
+
+.main-event-date .main-event-month {
+  font-size: 1.325em;
+  color: #522D80;
+}
+
+.main-event-date .main-event-day {
+  font-size: 1.325em;
+  color: #522D80;
+}
+
+
+/* ----TIME---- */
+.main-event-body .main-event-time:before {
+  content: "\e002";
+}
+
+.main-event-body .main-event-time {
+  color: #566127;
+}
+
+/* ----LOCATION---- */
+.main-event-body .main-event-location:before {
+  content: "\e003";
+}
+
+.main-event-body .main-event-location a {
+  color: #566127;
+  text-decoration: underline;
+
+}
+
+/* ----DESCRIPTION---- */
+
+
+
+
+
+
+
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
@@ -164,77 +252,4 @@ div.event-jumbo {
   .featurette-heading {
     margin-top: 7rem;
   }
-}
-
-
-/* Calendar Events
-========================= */
-
-/* Main events. calendar/event page */
-.main-event {
-  display: block;
-  
-  margin-bottom: 1.5rem;
-  border-bottom: 1px dotted #ccc;
-  padding-bottom: 5px;
-}
-.main-event p {
-  margin-bottom: 0;
-  line-height: 1.3;
-}
-.main-event aside {
-  margin-left: 4.5em;
-}
-.main-event .main-event-title {
-  margin: 0 0 .1875em;
-  line-height: 1;
-  font-weight: bold;
-}
-.main-event .main-event-time:before, .main-event .main-event-location:before {
-  margin-right: .3125em;
-  color: #666;
-  font-family: "clemson-icons";
-}
-.main-event .main-event-time:before {
-  content: "\e002";
-}
-.main-event .main-event-location:before {
-  content: "\e003";
-}
-.main-event .main-event-location a {
-  color: #666;
-}
-
-.main-event .main-event-desc {
-  margin-top:21px;
-}
-
-.main-event-date {
-  border: 1px solid #d7d7d7;
-  text-align: center;
-  float: left;
-  padding: .4375em .75em;
-  width: 3.9em;
-  height: 3.9em;
-}
-.main-event-date .month, .main-event-date .day {
-  display: block;
-  margin-top: -0.1875rem;
-}
-.main-event-date .month {
-  font-size: 1.125em;
-  font-weight: bold;
-}
-.main-event-date .day {
-  font-size: 1.625em;
-  color: #522D80;
-  line-height: 1;
-}
-
-#brunch_tix {
-  display: inline;
-}
-
-#event_banner {
-
 }
