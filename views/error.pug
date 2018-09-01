@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+	div(class="row")
+		h1(class="display-4 font-bold text-center mb-5")= title
+
+	div(class="row")
+		h3(class="display3 font-italic") Stack:
+		p= message
+
+	div(class="row")
+		button(class="btn btn-primary" href="/") Return Home
+
+block scripts
