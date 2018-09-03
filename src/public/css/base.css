@@ -232,6 +232,22 @@ div.event-jumbo {
 
 
 
+
+/* SERVICE PAGE
+-------------------------------------------------- */
+
+
+div.service-jumbo {
+  background-image: url('../img/banner3.jpg');
+  background-position: 0% 75%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #F66733;
+}
+
+
+
+
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 

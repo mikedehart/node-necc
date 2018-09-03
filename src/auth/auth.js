@@ -13,6 +13,12 @@ exports.decodeToken = function() {
 			req.headers.authorization = 'Bearer ' + req.query.access_token;
 		}
 
+		// Check for token in cookie
+		let neccCookie = req.signedCookies['necc_token'];
+		if(neccCookie) {
+			req.headers.authorization = 'Bearer ' + neccCookie;
+		}
+
 		// Will call next if token is valid, and send error if it is not.
 		// Decoded token attached to req.user
 		checkToken(req, res, next);
@@ -24,14 +30,12 @@ exports.decodeToken = function() {
 exports.verifyToken = function() {
 	return function(req, res, next) {
 		if(!req.user) {
-			//res.status(401).send('No user info!');
 			next(new Error('No user information'));
 		} else {
 			let userId = req.user._id;
 			Admin.findById(userId)
 				.then((user) => {
 					if(!user) {
-						//res.status(401).send('No valid user for your token');
 						next(new Error('No valid user for this token'));
 					} else {
 						req.user = user;

@@ -10,8 +10,24 @@ block header
 
 block content
 	div(class="row")
-		h3(class="display-3 font-italic mb-5") Upcoming Events
+		h3(class="display-3 font-italic mb-5") Upcoming Events ${dates}
 	div(class="row")
+		each val in dates
+			div(class="col-md-3")
+				div(class="card")
+					div(class="jumbotron jumbotron-fluid p-md-3 text-white main-event-head" style="height: 100%; width: 100%;")
+						h5(class="card-title text-center")= val.title
+					div(class="card-body main-event-body")
+						p(class="main-event-date") 
+							span(class="main-event-month rockTxt")= val.month
+							span(class="main-event-day")= val.day
+						p(class="main-event-time")= val.time
+						p(class="main-event-location") 
+							a(href=val.location.link)= val.location.title 
+						p(class="card-text")= val.desc
+						p(class="card-text")= val.summary
+						a(class="btn btn-carousel" href="#") View in Calendar
+
 		div(class="col-md-3")
 			div(class="card")
 				div(class="jumbotron jumbotron-fluid p-md-3 text-white main-event-head" style="height: 100%; width: 100%;")

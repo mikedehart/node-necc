@@ -8,5 +8,12 @@ exports.signin = function(req, res, next) {
 	res.send(token);
 };
 
-//TODO Work Here!
-// need to pass token, set it in client, check for it etc
+// Simple verification to make sure token does decode to
+// user id.
+exports.checktoken = function(req, res, next) {
+	if(req.user) {
+		res.send(true);
+	} else {
+		res.send(false);
+	}
+};

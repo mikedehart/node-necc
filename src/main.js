@@ -6,6 +6,7 @@ const cp = require('cookie-parser');
 // Local requires
 const config = require('./conf/conf');
 const clientApi = require('./api');
+const calendar = require('./public/scripts/fetchevents');
 // Routes
 const api = require('./api/api');
 const auth = require('./auth/authRoutes');
@@ -43,40 +44,58 @@ app.get('/', (req, res, next) => {
 })
 
 app.get('/events', (req, res, next) => {
+	clientApi.getCal(config.client.calendar)
+		.then((res) => {
+			let calItems = calendar.processEvents(res);
+			res.render('events', { 'dates': calItems });
+		})
+		.catch((err) => next(new Error('Error fetching events!')));
+
 	res.render('events');
 })
 
-app.get('/academics', (req, res, next) => {
-	res.render('events');
+app.get('/service', (req, res, next) => {
+	res.render('service');
 })
 
 app.get('/membership', (req, res, next) => {
-	res.render('events');
+	res.render('membership');
 })
 
 app.get('/gallery', (req, res, next) => {
-	console.log(req.body);
-	if(req.body.token) {
-		console.log('token found!');
-		const token = req.body.token;
-		res.render('gallery', { token });
+	res.render('gallery');
+})
+
+// -------------- Admin Routes ---------------
+
+// Check for cookie. 
+//   If no cookie, send to login page
+//   Else, authorize cookie and make sure ID is correct
+app.get('/admin', (req, res, next) => {
+	let cookies = req.signedCookies['necc_token'];
+	if(cookies) {
+		clientApi.verify(cookies)
+			.then(isValid => {
+				if(!isValid) {
+					res.render('error', { title: 'Invalid token!',
+								message: 'Your token does not validate. Try deleting cache / cookies and try again.'})
+				}
+			})
+			.catch(err => console.error(err));
+		res.render('admin/console');
 	} else {
-		res.render('gallery');
+		res.render('admin/login');
 	}
-})
+});
 
+// 
 app.get('/login', (req, res, next) => {
-
-
-	console.log('Cookies: ', req.cookies);
-	console.log('SignedCookies: ', req.signedCookies)
-	console.log(req.secret);
-	res.cookie('test', 'hello', {signed: true});
-
-
 	res.render('admin/login.pug');
-})
+});
 
+
+
+// Login page submits here
 app.post('/authorize', (req, res, next) => {
 	const username = req.body.username;
 	const password = req.body.password;
@@ -94,9 +113,10 @@ app.post('/authorize', (req, res, next) => {
 						message: 'Your token sucks'});
 				} else {
 					res.cookie('necc_token', token.data, { signed: true });
-					res.render('admin/console');
+					res.redirect('/admin');
 				}
 			})
+			.catch((err) => console.error(err));
 	}
 })
 
