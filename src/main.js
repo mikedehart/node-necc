@@ -1,21 +1,24 @@
 const express = require('express');
+
 // 3rd Party Middleware
 const bp = require('body-parser');
 const morgan = require('morgan');
 const cp = require('cookie-parser');
+
 // Local requires
 const config = require('./conf/conf');
 const clientApi = require('./api');
 const calendar = require('./public/scripts/fetchevents');
+
 // Routes
 const api = require('./api/api');
 const auth = require('./auth/authRoutes');
+
 // App
 const app = express();
 
 // Connect to database
 require('mongoose').connect(config.db.url, config.db.options);
-
 
 // use pug template engine
 app.set('view engine', 'pug');
@@ -26,13 +29,6 @@ app.use(bp.urlencoded({ extended: false }));
 app.use(bp.json());
 app.use(cp(config.client.cookie));
 app.use(express.static(__dirname + '/public'));
-
-// Route-specific middleware
-const getToken = function() {
-	return function(req, res, next) {
-
-	};
-};
 
 // Setup additional routes
 app.use('/api', api);
@@ -45,13 +41,14 @@ app.get('/', (req, res, next) => {
 
 app.get('/events', (req, res, next) => {
 	clientApi.getCal(config.client.calendar)
-		.then((res) => {
-			let calItems = calendar.processEvents(res);
+		.then((response) => {
+			console.log(response);
+			let calItems = calendar.processEvents(response);
 			res.render('events', { 'dates': calItems });
 		})
-		.catch((err) => next(new Error('Error fetching events!')));
+		.catch((err) => next(new Error(err.toString())));
 
-	res.render('events');
+	//res.render('events');
 })
 
 app.get('/service', (req, res, next) => {
@@ -62,8 +59,37 @@ app.get('/membership', (req, res, next) => {
 	res.render('membership');
 })
 
+const fs = require('fs');
+
 app.get('/gallery', (req, res, next) => {
 	res.render('gallery');
+})
+
+app.get('/gallery/:id', (req, res, next) => {
+	if(!req.params.id) {
+		next(new Error('No image gallery provided'));
+	} else {
+		const fldr = req.params.id;
+		const imgPath = `/img/events/${fldr}/`;
+		const osFldr = (__dirname + `/public/${imgPath}`);
+		let imgs = [];
+
+		fs.readdir(osFldr, (err, files) => {
+			if(err) {
+				next(new Error('Invalid image path!'));
+				return;
+			} else {
+				files.forEach((file) => {
+					console.log(file);
+					imgs.push(file);
+				});
+				res.render('gallery', {
+					path: imgPath,
+					imgs: imgs
+				});
+			}
+		});
+	}
 })
 
 // -------------- Admin Routes ---------------
@@ -128,7 +154,8 @@ app.use((err, req, res, next) => {
 		res.render('error', { title: 'Invalid Token!', message: err.stack });
 		return;
 	}
-	res.render('error', { title: err.name, message: err.stack });
+	console.log(err);
+	res.render('error', { title: err, message: err.stack });
 });
 
 

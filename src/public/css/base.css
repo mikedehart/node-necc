@@ -79,22 +79,22 @@ div.footer-social div a:hover {
 
 /* Carousel button coloring */
 
-.btn-carousel {
+.btn-clemson {
   background-color: #F66733;
   color: #FFF;
 }
 
-  .btn-carousel:focus {
+  .btn-clemson:focus {
     box-shadow: 0 0 0 0.2rem rgba(246,103,51,.5);
   }
 
-  .btn-carousel:hover {
+  .btn-clemson:hover {
     background-color: #CC552A;
     color: #FFF;
     border-color: #F66733;
   }
 
-  .btn-carousel:active {
+  .btn-clemson:active {
 
   }
 
@@ -143,17 +143,22 @@ div.footer-social div a:hover {
 ==================== */
 
 div.event-jumbo {
-  background-image: url('../img/stadium.jpg');
-  background-position: 0% 75%;
+  background-image: url('../img/bg25.jpg');
+  background-position: 0% 10%;
   background-size: cover;
   background-repeat: no-repeat;
   color: #F66733;
+  text-shadow: black 0.3em 0.3em 0.3em;
 }
 
 
 
 /* CALENDAR CARDS
 ==================== */
+
+.card {
+  margin-bottom: .5125em;
+}
 
 /* ----TITLE---- */
 .main-event-head {
@@ -164,8 +169,9 @@ div.event-jumbo {
   margin-bottom: 0;
 }
 
-.main-event-head h1 {
+.main-event-head .card-title h5 {
   color: #FFF;
+  text-decoration: none;
 }
 
 /* ----BODY---- */
@@ -196,6 +202,7 @@ div.event-jumbo {
 .main-event-date .main-event-month {
   font-size: 1.325em;
   color: #522D80;
+  margin-right: .3125em;
 }
 
 .main-event-date .main-event-day {

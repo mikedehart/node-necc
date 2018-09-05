@@ -4,27 +4,16 @@ block header
 	link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" integrity="sha256-HAaDW5o2+LelybUhfuk0Zh2Vdk8Y2W2UeKmbaXhalfA=" crossorigin="anonymous")
 
 block content
-	h3= token
-	h1(class="my-4 text-center text-lg-left") Thumbnail Gallery
+	h1(class="my-4 text-center text-lg-left") Images
 	div(class="row text-center text-lg-left")
-		// Thumbnails start here
-		div(class="col-lg-3 col-md-4 col-xs-6")
-			a(class="d-block mb-4 h-100" href="img/necc_logo.png" data-toggle="lightbox" data-gallery="example-gallery" data-type="image")
-				img(class="img-fluid img-thumbnail" src="img/necc_logo.png" alt="400x300")
-
-		div(class="col-lg-3 col-md-4 col-xs-6")
-			a(class="d-block mb-4 h-100" href="img/tiger.png" data-toggle="lightbox" data-gallery="example-gallery" data-type="image")
-				img(class="img-fluid img-thumbnail" src="img/tiger.png" alt="400x300")
-
-		div(class="col-lg-3 col-md-4 col-xs-6")
-			a(class="d-block mb-4 h-100" href="img/banner2.jpg" data-toggle="lightbox" data-gallery="example-gallery" data-type="image")
-				img(class="img-fluid img-thumbnail" src="img/banner2.jpg" alt="400x300")
-
-		div(class="col-lg-3 col-md-4 col-xs-6")
-			a(class="d-block mb-4 h-100" href="http://placehold.it/400x300" data-toggle="lightbox" data-gallery="example-gallery" data-type="image")
-				img(class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="400x300")
+		if imgs
+			each i in imgs
+				- var currentimg = path + i
+				div(class="col-lg-3 col-md-4 col-xs-6")
+					a(class="d-block mb-4 h-100" href=currentimg data-toggle="lightbox" data-gallery="example-gallery" data-type="image")
+						img(class="img-fluid img-thumbnail" src=currentimg alt="400x300")
 
 block scripts
 	script(src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js" integrity="sha256-Y1rRlwTzT5K5hhCBfAFWABD4cU13QGuRN6P5apfWzVs=" crossorigin="anonymous")
 
-	script(src="scripts/lightbox.js" type="text/javascript")
+	script(src="/scripts/lightbox.js" type="text/javascript")

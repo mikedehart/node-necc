@@ -32,7 +32,7 @@ exports.getCal = function(config) {
 		next(new Error('Calendar name / key not provided'));
 	}
 	else {
-		const calUrl = `https://www.googleapis.com/calendar/v3/calendars/${calName}/events?key=${calKey}&timeMin=${currDate}&maxResults=7&singleEvents=true&orderBy=startTime`;
+		const calUrl = `https://www.googleapis.com/calendar/v3/calendars/${calName}/events?key=${calKey}&timeMin=${currDate}&maxResults=8&singleEvents=true&orderBy=startTime`;
 		console.log(calUrl);
 		return axios.get(calUrl)
 			.then((res) => res)

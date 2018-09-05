@@ -14,6 +14,13 @@ function validateValue(val, defVal="") {return ((typeof(val) !== 'undefined') ? 
 // Choose either date or dateTime
 function chooseDate(date, dateTime) {return ((typeof(date) !== 'undefined') ? date : dateTime)}
 
+// Simple function to split location address and return only
+// the name.
+function sliceLocation(location) {
+	let name = location.split(',');
+	return name[0];
+}
+
 function getEventTime(fullDate) {
 	// Slices time and converts to am/pm;
 	var time = fullDate.slice(11,16);
@@ -27,18 +34,17 @@ function getEventTime(fullDate) {
 function stringifyTime(startTime, endTime) {
 	let start = ((startTime.length > 10) ? getEventTime(startTime) : ''); 
 	let end = ((endTime.length > 10) ? getEventTime(endTime) : '');
-
-	return (start === '' || end === '') ? '' : `${start} to ${end}` ;
+	return (start === '' || end === '') ? '' : `${start} - ${end}` ;
 }
 
 exports.processEvents = function(res) {
-	let events = res.items;
+	let events = res.data.items;
 	let monthAbbr = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	let allEvents = [];
 
 		events.map((e) => {
-			
 			let cLoc = validateValue(e.location);
+			cLoc = sliceLocation(cLoc);
 			let cStart = chooseDate(e.start.date, e.start.dateTime);
 			let cEnd = chooseDate(e.end.date, e.end.dateTime);
 
@@ -49,9 +55,8 @@ exports.processEvents = function(res) {
 			let cELink = e.htmlLink;
 			let cDesc = validateValue(e.description);
 			let cSum = validateValue(e.summary);
-
 			let currentEvent = {
-				'title': ceLink,
+				'title': cELink,
 				'month': cMonth,
 				'day': cDay,
 				'time': cTime,
@@ -62,7 +67,6 @@ exports.processEvents = function(res) {
 				'desc': cDesc,
 				'summary': cSum
 			};
-		
 			allEvents.push(currentEvent);
 		});
 
