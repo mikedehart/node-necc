@@ -2,6 +2,7 @@ const router = require('express').Router();
 const controller = require('./adminController');
 const auth = require('../../auth/auth');
 
+//TODO: Close off these routes! Except one needed to verify JWT
 
 const authMiddleware = [auth.decodeToken(), auth.verifyToken()];
 

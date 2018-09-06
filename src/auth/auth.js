@@ -13,8 +13,9 @@ exports.decodeToken = function() {
 			req.headers.authorization = 'Bearer ' + req.query.access_token;
 		}
 
-		// Check for token in cookie
-		let neccCookie = req.signedCookies['necc_token'];
+		// Check for access_token property (from cookie)
+		// assigned in post call from api.verify
+		let neccCookie = req.body.access_token;
 		if(neccCookie) {
 			req.headers.authorization = 'Bearer ' + neccCookie;
 		}
@@ -36,7 +37,8 @@ exports.verifyToken = function() {
 			Admin.findById(userId)
 				.then((user) => {
 					if(!user) {
-						next(new Error('No valid user for this token'));
+						//next(new Error('No valid user for this token'));
+						res.status(401).send('No valid user for this token');
 					} else {
 						req.user = user;
 						next();
@@ -58,20 +60,19 @@ exports.verifyUser = function() {
 
 		// If no username / password then stop
 		if(!username || !password) {
-			//res.status(401).send('No username / password sent!');
-			next(new Error('No username / password given'));
-			return;
+			res.status(401).send('No username / password sent!');
+			//next(new Error('No username / password given'));
 		}
 
 		Admin.findOne({ username: username })
 			.then((user) => {
 				if(!user) {
-					//res.status(401).send('No user with given username');
-					next(new Error('No user with given Username!'));
+					res.status(401).send('No user with given username');
+					//next(new Error('No user with given Username!'));
 				} else {
 					if(!user.authenticate(password)) {
-						next(new Error('Incorrect password'));
-						//res.status(401).send("Incorrect password");
+						//next(new Error('Incorrect password'));
+						res.status(401).send("Incorrect password");
 					} else {
 						// Checks out, assign the user to req.user
 						req.user = user;

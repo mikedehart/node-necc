@@ -17,24 +17,21 @@ html(lang="en")
 		link(href="css/base.css" rel="stylesheet" type="text/css")
 
 	body
-		main(role="main")
-			div(class="container marketing")
-				div(class="row")
+		main(role="main" class="container")
+			div(class="row")
+				div(class="col-md-12 col-sm-12")
 					h1(class="display-3 text-center") NECC Console
 
-				div(class="row")
-					div(class="row")
-						h2(class="display-4") File Upload
-						div(class="col-md-6")
-							form
-								label(class="sr-only" for="input")
-								input(class="form-control" name="input" placeholder="testing")
+			div(class="row")
+				div(class="col-md-6 col-sm-12")
+					h2(class="display-4 text-center") File Upload
+					form
+						div(class="form-group")
+							label(for="gTitle") Title
+							input(type="text" class="form-control" id="titleInput" aria-describedby="titleHelp" placeholder="Gallery Title")
 
-				div(class="row")
-					h2(class="display-4") Get members
-					div(class="col-md-12")
-						form
-							label(class="sr-only" for="input")
-							input(class="form-control" name="input" placeholder="testing")
-
+				div(class="col-md-6 col-sm-12")
+					h2(class="display-4 text-center") Get members
+					button(class="btn btn-clemson btn-block" type="button") Fetch
+				
 

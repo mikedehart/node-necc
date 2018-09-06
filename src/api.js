@@ -10,7 +10,7 @@ exports.login = function(user, pass) {
 		password: pass
 	})
 	.then((data) => data)
-	.catch((err) => console.error(err));
+	.catch((err) => console.log('ERROR: ' + err));
 };
 
 exports.verify = function(token) {
@@ -19,7 +19,7 @@ exports.verify = function(token) {
 		access_token: _token
 	})
 	.then((data) => data)
-	.catch((err) => console.error(err));
+	.catch((err) => console.log('ERROR: ' + err));
 };
 
 
@@ -33,9 +33,17 @@ exports.getCal = function(config) {
 	}
 	else {
 		const calUrl = `https://www.googleapis.com/calendar/v3/calendars/${calName}/events?key=${calKey}&timeMin=${currDate}&maxResults=8&singleEvents=true&orderBy=startTime`;
-		console.log(calUrl);
 		return axios.get(calUrl)
 			.then((res) => res)
-			.catch((err) => next(new Error(err.toString())));
+			.catch((err) => console.log('ERROR: ' + err));
 	}
 };
+
+exports.getGallery = function(dirname) {
+	const _dirname = dirname;
+	if(!dirname) {
+		next(new Error('No directory name provided'));
+	} else {
+		return axios.get(`${clientUrl}/api/gallery`);
+	}
+}

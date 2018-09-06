@@ -24,7 +24,7 @@ require('mongoose').connect(config.db.url, config.db.options);
 app.set('view engine', 'pug');
 
 // Middleware
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 app.use(bp.urlencoded({ extended: false }));
 app.use(bp.json());
 app.use(cp(config.client.cookie));
@@ -105,10 +105,11 @@ app.get('/admin', (req, res, next) => {
 				if(!isValid) {
 					res.render('error', { title: 'Invalid token!',
 								message: 'Your token does not validate. Try deleting cache / cookies and try again.'})
+				} else {
+					res.render('admin/console');
 				}
 			})
-			.catch(err => console.error(err));
-		res.render('admin/console');
+			.catch(err => next(err));
 	} else {
 		res.render('admin/login');
 	}
@@ -125,24 +126,22 @@ app.get('/login', (req, res, next) => {
 app.post('/authorize', (req, res, next) => {
 	const username = req.body.username;
 	const password = req.body.password;
-	console.log(`USER: ${username} | PASS: ${password}`);
 	if(!username || !password) {
 		res.render('error', { title: 'No username / password given',
 								message: 'One of the two was missing. Try again.'})
+		return;
 	} else {
 		clientApi.login(username, password)
 			.then(token => {
-				console.log(token)
-				console.log(token.data);
 				if(!token) {
-					res.render('error', {title: 'Problem with token',
-						message: 'Your token sucks'});
+					res.render('error', {title: 'Incorrect username / password',
+						message: 'Try again'});
 				} else {
 					res.cookie('necc_token', token.data, { signed: true });
 					res.redirect('/admin');
 				}
 			})
-			.catch((err) => console.error(err));
+			.catch((err) => next(err));
 	}
 })
 
@@ -151,10 +150,10 @@ app.post('/authorize', (req, res, next) => {
 app.use((err, req, res, next) => {
 	// If error thrown from JWT validation
 	if(err.name === 'UnauthorizedError') {
-		res.render('error', { title: 'Invalid Token!', message: err.stack });
+		res.status(401).send('No authorization token found!');
+		//res.render('error', { title: 'Invalid Token!', message: err.stack });
 		return;
 	}
-	console.log(err);
 	res.render('error', { title: err, message: err.stack });
 });
 
