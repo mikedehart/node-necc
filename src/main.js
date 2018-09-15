@@ -61,8 +61,6 @@ app.get('/events', (req, res, next) => {
 				title: 'Events' });
 		})
 		.catch((err) => next(new Error(err.toString())));
-
-	//res.render('events');
 })
 
 app.get('/service', (req, res, next) => {
@@ -72,9 +70,6 @@ app.get('/service', (req, res, next) => {
 app.get('/membership', (req, res, next) => {
 	res.render('membership', { title: 'Membership' });
 })
-
-
-
 
 
 // ------- Final Error Handling -------
@@ -88,7 +83,5 @@ app.use((err, req, res, next) => {
 	}
 	res.render('error', { title: err, message: err.stack });
 });
-
-
 
 module.exports = app;

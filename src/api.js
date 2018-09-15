@@ -5,7 +5,8 @@ const qs = require('qs');
 const clientUrl = config.client.url;
 
 
-/* AUTHORIZATION FUNCTIONS */
+/* AUTHORIZATION FUNCTIONS 
+----------------------------*/
 
 exports.login = function(user, pass) {
 	return axios.post(`${clientUrl}/auth/signin`, {
@@ -26,7 +27,8 @@ exports.verify = function(token) {
 };
 
 
-/* GET FUNCTIONS FOR CALENDAR / GALLERIES */
+/* GET FUNCTIONS FOR CALENDAR / GALLERIES 
+-------------------------------------------*/
 
 exports.getCal = function() {
 	const calName = config.client.calendar.name;
@@ -56,8 +58,28 @@ exports.getGallery = function(id) {
 		.catch((err) => console.log('ERROR: ' + err));
 };
 
+/* USER CREATE / FETCH FUNCTIONS
+----------------------------------- */
 
-/* PAYPAL FUNCTIONS */
+
+exports.createUser = function(id, fname, lname, email, sub) {
+	return axios.post(`${clientUrl}/api/user`, {
+		purchase_id: id,
+		fname,
+		lname,
+		email,
+		subscribed: sub,
+	})
+	.then((res) => {
+		console.log('RETURN FROM CREATE: ' + res);
+		res.data;
+	})
+	.catch(err => console.error(err));
+};
+
+
+/* PAYPAL FUNCTIONS 
+----------------------*/
 
 exports.getToken = function() {
 

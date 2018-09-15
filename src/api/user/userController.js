@@ -30,24 +30,25 @@ exports.get = function(req, res, next) {
 
 exports.post = function(req, res, next) {
 	let newUser = new User(req.body);
-
   let siteKey = keygen.generate(10);
 
   newUser.sitekey = siteKey;
 
-  let x = newUser.encryptKey(siteKey);
+  let cryptKey = newUser.encryptKey(siteKey);
 
   console.log('Key: '+ siteKey);
-  console.log('E-Key: '+ x);
+  console.log('E-Key: '+ cryptKey);
 
-  User.findOne({ sitekey: x})
+  User.findOne({ sitekey: cryptKey })
     .then(key => {
       if(!key) {
           newUser.save((err, user) => {
             if(err) {
-              //return next(err);
-              res.status(500).send('Error saving user: ' + err);
+              return next(err);
+              //res.status(500).send('Error saving user: ' + err);
             } else {
+              user.plainkey = siteKey;
+              console.log(user);
               res.json(user);
             }
           });
@@ -61,6 +62,7 @@ exports.post = function(req, res, next) {
 		if(err) {
 			//return next(err);
       res.status(500).send('Error saving user: ' + err);
+      return;
 		} else {
       res.json(user);
     }
@@ -70,8 +72,7 @@ exports.post = function(req, res, next) {
 // -------- ID Routes --------
 
 exports.getOne = function(req, res, next) {
-  var user = req.user;
-
+  let user = req.user;
   res.json(user);
 };
 

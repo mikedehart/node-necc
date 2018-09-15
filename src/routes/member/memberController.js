@@ -1,6 +1,7 @@
 const axios = require('axios');
 const clientApi = require('../../api');
 const config = require('../../conf/conf');
+const User = require('../../api/user/userModel');
 
 
 // Pull up login page
@@ -10,12 +11,10 @@ exports.get = function(req, res, next) {
 
 // Log in to members area
 exports.post = function(req, res, next) {
-
+	res.render('members/console');
 };
 
-
-// create new user
-exports.newUser = function(req, res, next) {
+exports.login = function(req, res, next) {
 
 };
 
@@ -90,31 +89,55 @@ exports.authPayment = function(req, res, next) {
 
 			axios(options)
 				.then((payment) => {
-					console.log(payment.data.state);
-					console.log(payment.data.payer.payer_info.email);
-					console.log(payment.data.payer.payer_info.first_name);
-					console.log(payment.data.payer.payer_info.last_name);
-					console.log(payment.data.id);
-					console.log(payment.data.create_time);
-					if(payment.data.state === 'approved') {
-						console.log('success');
-						res.json(payment.data);
+					const payState = payment.data.state;
+
+					if(payState === 'approved') {
+						const cEmail = payment.data.payer.payer_info.email;
+						const cFname = payment.data.payer.payer_info.first_name;
+						const cLname = payment.data.payer.payer_info.last_name;
+						const cId = payment.data.id;
+						
+						// create user in the DB
+						clientApi.createUser(cId, cFname, cLname, cEmail)
+							.then((user) => {
+								if(!user) {
+									res.status(500).send('Error adding user!');
+								} else {
+									let url = config.client.url;
+									res.json({
+										url,
+										status: payment.data.state,
+										user,
+										id: user.purchase_id
+									});
+								}
+							})
+							.catch((err) => console.error(err));
 					} else {
-						res.send('members/paypal_failed');
+						res.send('members/pay-failed');
 					}
 				})
-				//ERROR HERE
 				.catch(err => console.error(err));
 		})
-		.catch(err => console.error('OUTER ERROR: '+err));
+		.catch(err => console.error(err));
 };
 
-exports.confirmation = function(req, res, next) {
-	const _status = req.body.status;
-	console.log('is this still being called?');
-	if(_status === 'success') {
-		res.render('members/paypal_success');
-	} else {
-		res.render('members/paypal_failed');
-	}
+
+/* ---------- ID ROUTES ---------- */
+
+
+//  Called after confirmation. A valid purchase_id must
+// be saved after payment approval.
+
+exports.confirmation = function(req, res, next, id) {
+	console.log(id);
+	User.findOne({ purchase_id: id })
+		.then((user) => {
+			if(!user) {
+				// send to failed page
+			} else {
+				// send details to user?
+			}
+		})
+		.catch((err) => console.error(err));
 };

@@ -9,9 +9,10 @@ paypal.Button.render({
 	    // Customize button (optional)
 	    locale: 'en_US',
 	    style: {
-	      size: 'small',
-	      color: 'gold',
-	      shape: 'pill',
+	      size: 'medium',
+	      color: 'blue',
+	      shape: 'rect',
+	      label: 'pay'
 	    },
 	    // Set up a payment
 	    payment: function(data, actions) {
@@ -28,6 +29,12 @@ paypal.Button.render({
 	    	})
 	    	.then(function(res) {
 	    		//jquery here?
+	    		console.log(res);
+	    		console.log(res.status);
+	    		console.log(res.id);
+	    		console.log(res.user);
+	    		console.log(res.url);
+	    		//window.location = res.url;
 	    	})
 	    }
 	  }, '#paypal-button');

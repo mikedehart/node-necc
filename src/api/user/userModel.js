@@ -1,26 +1,30 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
-const keygen = require('random-key');
 
 let UserSchema = new Schema({
-	fname: {
+	purchase_id: {
 		type: String,
+		required: true,
+		unique: true
+	},
+	fname: {
+		type: String
 	},
 	lname: {
 		type: String
 	},
 	email: {
 		type: String,
-		unique: true,
 		required: true
 	},
 	subscribed: {
-		type: Boolean
+		type: Boolean,
+		default: false
 	},
 	signdate: {
 		type: Date,
-		required: true
+		default: new Date()
 	},
 	sitekey: {
 		type: String,
@@ -32,7 +36,6 @@ let UserSchema = new Schema({
 // Prior to saving user, encrypt site key
 UserSchema.pre('save', function(next) {
 	if(!this.isModified('sitekey')) return next();
-	console.log('plain key: ' + this.sitekey);
 	this.sitekey = this.encryptKey(this.sitekey);
 	next();
 })
