@@ -1,8 +1,11 @@
-const https = require('https');
 const axios = require('axios');
 const config = require('./conf/conf');
+const qs = require('qs');
 
 const clientUrl = config.client.url;
+
+
+/* AUTHORIZATION FUNCTIONS */
 
 exports.login = function(user, pass) {
 	return axios.post(`${clientUrl}/auth/signin`, {
@@ -23,9 +26,11 @@ exports.verify = function(token) {
 };
 
 
-exports.getCal = function(config) {
-	const calName = config.name;
-	const calKey = config.key;
+/* GET FUNCTIONS FOR CALENDAR / GALLERIES */
+
+exports.getCal = function() {
+	const calName = config.client.calendar.name;
+	const calKey = config.client.key;
 	const currDate = new Date().toISOString();
 
 	if(!calName || !calKey) {
@@ -39,11 +44,44 @@ exports.getCal = function(config) {
 	}
 };
 
-exports.getGallery = function(dirname) {
-	const _dirname = dirname;
-	if(!dirname) {
-		next(new Error('No directory name provided'));
-	} else {
-		return axios.get(`${clientUrl}/api/gallery`);
-	}
+exports.getGalleries = function() {
+		return axios.get(`${clientUrl}/api/gallery`)
+			.then((galleries) => galleries.data)
+			.catch((err) => console.log('ERROR: ' + err));
+};
+
+exports.getGallery = function(id) {
+	return axios.get(`${clientUrl}/api/gallery/${id}`)
+		.then((gallery) => gallery.data)
+		.catch((err) => console.log('ERROR: ' + err));
+};
+
+
+/* PAYPAL FUNCTIONS */
+
+exports.getToken = function() {
+
+	const url = 'https://api.sandbox.paypal.com/v1/oauth2/token';
+	const data = {
+		grant_type: 'client_credentials'
+	};
+	const auth = {
+		username: config.paypal.client_id,
+		password: config.paypal.secret
+	};
+	const options = {
+		method: 'post',
+		headers: {
+			'content-type': 'application/x-www-form-urlencoded'
+		},
+		withCredentials: true,
+		data: qs.stringify(data),
+		auth: auth,
+		url: url
+	};
+
+
+	return axios(options)
+		.then((res) => res.data)
+		.catch(err => console.error(err));
 }

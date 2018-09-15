@@ -1,0 +1,56 @@
+extends layout.pug
+
+block header
+	div(class="jumbotron mbr-jumbo p-3 p-md-5 text-white")
+		div(class="col-md-6 px-0")
+			h1(class="display-3") Membership
+			p(class="lead my-3") Did you know? There is a thriving Clemson community right here in New England. We would love for you to be a part of it! Join us or renew your membership today for just $25.
+
+block content
+	div(class="row")
+		p(class="lead") The New England Clemson Club (NECC)  is part of a network of regional clubs within the U.S. that are affiliated with the Clemson Alumni Association. The dues paid to the Club help provide the financial resources and support needed to host football game watches, networking events, social events like our annual accepted student send-off party, and more!
+
+		p(class="lead") In addition, to help make our events possible, as an NECC member, you can take advantage of all the other great benefits of membership such as advanced access to sporting event tickets, early-bird ticket prices, food specials at events, and free NECC swag. Become a member today!
+	div(class="row")
+		h3 Already a member?
+	div(class="row mb-2")
+		small(text="text-muted") Event tickets and other member-only benefits can be access below.
+	div(class="row")
+		a(class="btn btn-clemson" href="#") Log in
+
+	hr(class="featurette-divider")
+
+	div(class="row")
+			h3(class="display-4 font-italic") Become a Member
+				span(class="icon-paw ml-2")
+	div(class="container p-3 p-md-5 mbr-signup")
+		form(class="mbr-form")
+			div(class="form-row")
+				div(class="form-group col-md-6")
+					label(for="inputFName") First Name
+					input(type="text" class="form-control" id="inputFName")
+				div(class="form-group col-md-6")
+					label(for="inputLName") Last Name
+					input(type="text" class="form-control" id="inputLName")
+
+			div(class="form-row")
+				div(class="form-group col-md-6")
+					label(for="inputEmail") Email
+					input(type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp")
+					small(text="form-text text-muted" id="emailHelp") You email is used to log into the site. We will never use your email address except for sending newsletters if subscribed.
+				div(class="form-group col-md-6")
+					div(class="form-check mt-4")
+						input(type="checkbox" class="form-check-input" id="inputSub")
+						label(class="form-check-label" for="inputSub") Subscribe to updates from NECC
+		button(type="submit" class="btn btn-clemson") Checkout
+
+
+
+
+	div(id="paypal-button")
+	script(src="https://www.paypalobjects.com/api/checkout.js" type="text/javascript")
+	script(src="scripts/paypal.js" type="text/javascript")
+
+
+	hr(class="featurette-divider")
+block scripts

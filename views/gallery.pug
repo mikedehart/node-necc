@@ -1,19 +1,25 @@
 extends layout.pug
 
 block header
-	link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" integrity="sha256-HAaDW5o2+LelybUhfuk0Zh2Vdk8Y2W2UeKmbaXhalfA=" crossorigin="anonymous")
+	div(class="jumbotron gallery-jumbo p-3 p-md-5 text-white bg-dark")
+		div(class="col-md-6 px-0 header-shadow")
+			h1(class="display-3") Club Pictures
+			p(class="lead my-3") Galleries of past Clemson Alumni events.
+
 
 block content
-	h1(class="my-4 text-center text-lg-left") Images
-	div(class="row text-center text-lg-left")
-		if imgs
-			each i in imgs
-				- var currentimg = path + i
-				div(class="col-lg-3 col-md-4 col-xs-6")
-					a(class="d-block mb-4 h-100" href=currentimg data-toggle="lightbox" data-gallery="example-gallery" data-type="image")
-						img(class="img-fluid img-thumbnail" src=currentimg alt="400x300")
+	div(class="row")
+		each album in albums
+			- var url = '/gallery/' + album.dirname
+			div(class="col-md-6")
+				div(class="card flex-md-row mb-4 shadow-sm h-md-250")
+					div(class="card-body d-flex flex-column align-items-start")
+						strong(class="d-inline-block mb-2 text-secondary") Events
+						h3(class="mb-0")
+							a(class="text-dark" href=url)= album.title
+						div(class="mb-1 text-muted")= album.evtdate
+						p(class="card-text mb-auto")= album.text
+						a(href=url) View Pictures
+					img(class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt=album.title style="width: 200px; height: 250px;" src=album.img data-holder-rendered="true")
 
-block scripts
-	script(src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js" integrity="sha256-Y1rRlwTzT5K5hhCBfAFWABD4cU13QGuRN6P5apfWzVs=" crossorigin="anonymous")
-
-	script(src="/scripts/lightbox.js" type="text/javascript")
+	hr(class="featurette-divider")

@@ -1,20 +1,19 @@
 header
 	nav(class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #F66733")
 		img(class="d-block mr-2" width="36" height="36" viewbox="0 0 612 612" src="/img/white.png")
-		a(class="navbar-brand" href="#") NEClemsonClub
+		a(class="navbar-brand" href="/") NEClemsonClub
 		button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation")
 			span(class="navbar-toggler-icon")
 		div(class="collapse navbar-collapse" id="navbarCollapse")
 			// Main Nav
 			ul(class="navbar-nav")
-				li(class="nav-item active")
+				li(class=title=='Home'?'nav-item active':'nav-item')
 					a(class="nav-link" href="/") Home
-						span(class="sr-only") (current)
-				li(class="nav-item")
+				li(class=title=='Events'?'nav-item active':'nav-item')
 					a(class="nav-link" href="/events") Events
-				li(class="nav-item")
+				li(class=title=='Service'?'nav-item active':'nav-item')
 					a(class="nav-link" href="/service") Service
-				li(class="nav-item")
+				li(class=title=='Membership'?'nav-item active':'nav-item')
 					a(class="nav-link" href="/membership") Membership
 			// Social Media Links
 			ul(class="navbar-nav navbar-social ml-auto")

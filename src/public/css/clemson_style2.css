@@ -1,0 +1,195 @@
+/* colors */
+h1:not(.panel):not(.border).orange, h2:not(.panel):not(.border).orange, h3:not(.panel):not(.border).orange, h4:not(.panel):not(.border).orange, h5:not(.panel):not(.border).orange, h6:not(.panel):not(.border).orange, p:not(.panel):not(.border).orange, span:not(.panel):not(.border).orange {
+  color: #F66733;
+}
+h1:not(.panel):not(.border).regalia, h2:not(.panel):not(.border).regalia, h3:not(.panel):not(.border).regalia, h4:not(.panel):not(.border).regalia, h5:not(.panel):not(.border).regalia, h6:not(.panel):not(.border).regalia, p:not(.panel):not(.border).regalia, span:not(.panel):not(.border).regalia {
+  color: #522D80;
+}
+h1:not(.panel):not(.border).rock, h2:not(.panel):not(.border).rock, h3:not(.panel):not(.border).rock, h4:not(.panel):not(.border).rock, h5:not(.panel):not(.border).rock, h6:not(.panel):not(.border).rock, p:not(.panel):not(.border).rock, span:not(.panel):not(.border).rock {
+  color: #685C53;
+}
+h1:not(.panel):not(.border).brick, h2:not(.panel):not(.border).brick, h3:not(.panel):not(.border).brick, h4:not(.panel):not(.border).brick, h5:not(.panel):not(.border).brick, h6:not(.panel):not(.border).brick, p:not(.panel):not(.border).brick, span:not(.panel):not(.border).brick {
+  color: #a25016;
+}
+h1:not(.panel):not(.border).oak, h2:not(.panel):not(.border).oak, h3:not(.panel):not(.border).oak, h4:not(.panel):not(.border).oak, h5:not(.panel):not(.border).oak, h6:not(.panel):not(.border).oak, p:not(.panel):not(.border).oak, span:not(.panel):not(.border).oak {
+  color: #562E19;
+}
+h1:not(.panel):not(.border).innovation, h2:not(.panel):not(.border).innovation, h3:not(.panel):not(.border).innovation, h4:not(.panel):not(.border).innovation, h5:not(.panel):not(.border).innovation, h6:not(.panel):not(.border).innovation, p:not(.panel):not(.border).innovation, span:not(.panel):not(.border).innovation {
+  color: #86898C;
+}
+h1:not(.panel):not(.border).lace, h2:not(.panel):not(.border).lace, h3:not(.panel):not(.border).lace, h4:not(.panel):not(.border).lace, h5:not(.panel):not(.border).lace, h6:not(.panel):not(.border).lace, p:not(.panel):not(.border).lace, span:not(.panel):not(.border).lace {
+  color: #F9E498;
+}
+h1:not(.panel):not(.border).moon, h2:not(.panel):not(.border).moon, h3:not(.panel):not(.border).moon, h4:not(.panel):not(.border).moon, h5:not(.panel):not(.border).moon, h6:not(.panel):not(.border).moon, p:not(.panel):not(.border).moon, span:not(.panel):not(.border).moon {
+  color: #D4C99E;
+}
+h1:not(.panel):not(.border).bowman, h2:not(.panel):not(.border).bowman, h3:not(.panel):not(.border).bowman, h4:not(.panel):not(.border).bowman, h5:not(.panel):not(.border).bowman, h6:not(.panel):not(.border).bowman, p:not(.panel):not(.border).bowman, span:not(.panel):not(.border).bowman {
+  color: #566127;
+}
+h1:not(.panel):not(.border).blueridge, h2:not(.panel):not(.border).blueridge, h3:not(.panel):not(.border).blueridge, h4:not(.panel):not(.border).blueridge, h5:not(.panel):not(.border).blueridge, h6:not(.panel):not(.border).blueridge, p:not(.panel):not(.border).blueridge, span:not(.panel):not(.border).blueridge {
+  color: #3A4958;
+}
+h1:not(.panel):not(.border).fields, h2:not(.panel):not(.border).fields, h3:not(.panel):not(.border).fields, h4:not(.panel):not(.border).fields, h5:not(.panel):not(.border).fields, h6:not(.panel):not(.border).fields, p:not(.panel):not(.border).fields, span:not(.panel):not(.border).fields {
+  color: #B5C327;
+}
+h1:not(.panel):not(.border).sky, h2:not(.panel):not(.border).sky, h3:not(.panel):not(.border).sky, h4:not(.panel):not(.border).sky, h5:not(.panel):not(.border).sky, h6:not(.panel):not(.border).sky, p:not(.panel):not(.border).sky, span:not(.panel):not(.border).sky {
+  color: #109DC0;
+}
+
+/* panels */
+.panel.orange, .spotlight.orange, .button.orange, button.orange {
+  background: #F66733;
+}
+.panel.regalia, .spotlight.regalia, .button.regalia, button.regalia {
+  background: #522D80;
+}
+.panel.black {
+  background: #000000;
+}
+.panel.white {
+  background: #FFFFFF;
+  color: #000000;
+}
+.panel.white h1, .panel.white h2, .panel.white h3, .panel.white h4, .panel.white h5, .panel.white h6, .panel.white p, .panel.white li {
+  color: #000000;
+}
+.panel.rock, .spotlight.rock, .button.rock, button.rock {
+  background: #685C53;
+}
+.panel.brick, .spotlight.brick, .button.brick, button.brick {
+  background: #a25016;
+}
+.panel.oak, .spotlight.oak, .button.oak, button.oak {
+  background: #562E19;
+}
+.panel.innovation, .spotlight.innovation, .button.innovation, button.innovation {
+  background: #86898C;
+}
+.panel.lace, .spotlight.lace, .button.lace, button.lace {
+  background: #F9E498;
+  color: #562E19;
+}
+.panel.lace h1, .spotlight.lace h1, .button.lace h1, button.lace h1, .panel.lace h2, .spotlight.lace h2, .button.lace h2, button.lace h2, .panel.lace h3, .spotlight.lace h3, .button.lace h3, button.lace h3, .panel.lace h4, .spotlight.lace h4, .button.lace h4, button.lace h4, .panel.lace h5, .spotlight.lace h5, .button.lace h5, button.lace h5, .panel.lace h6, .spotlight.lace h6, .button.lace h6, button.lace h6, .panel.lace p, .spotlight.lace p, .button.lace p, button.lace p, .panel.lace li, .spotlight.lace li, .button.lace li, button.lace li {
+  color: #562E19;
+}
+.panel.moon, .spotlight.moon, .button.moon, button.moon {
+  background: #D4C99E;
+  color: #000000;
+}
+.panel.moon h1, .spotlight.moon h1, .button.moon h1, button.moon h1, .panel.moon h2, .spotlight.moon h2, .button.moon h2, button.moon h2, .panel.moon h3, .spotlight.moon h3, .button.moon h3, button.moon h3, .panel.moon h4, .spotlight.moon h4, .button.moon h4, button.moon h4, .panel.moon h5, .spotlight.moon h5, .button.moon h5, button.moon h5, .panel.moon h6, .spotlight.moon h6, .button.moon h6, button.moon h6, .panel.moon p, .spotlight.moon p, .button.moon p, button.moon p, .panel.moon li, .spotlight.moon li, .button.moon li, button.moon li {
+  color: #000000;
+}
+.panel.bowman, .spotlight.bowman, .button.bowman, button.bowman {
+  background: #566127;
+}
+.panel.blueridge, .spotlight.blueridge, .button.blueridge, button.blueridge {
+  background: #3A4958;
+}
+.panel.fields, .spotlight.fields, .button.fields, button.fields {
+  background: #B5C327;
+}
+.panel.sky, .spotlight.sky, .button.sky, button.sky {
+  background: #109DC0;
+}
+.panel.gray, .spotlight.gray, .button.gray, button.gray {
+  background: #f2f2f2;
+  color: #555;
+}
+.panel.gray h1, .spotlight.gray h1, .button.gray h1, button.gray h1, .panel.gray h2, .spotlight.gray h2, .button.gray h2, button.gray h2, .panel.gray h3, .spotlight.gray h3, .button.gray h3, button.gray h3, .panel.gray h4, .spotlight.gray h4, .button.gray h4, button.gray h4, .panel.gray h5, .spotlight.gray h5, .button.gray h5, button.gray h5, .panel.gray h6, .spotlight.gray h6, .button.gray h6, button.gray h6, .panel.gray p, .spotlight.gray p, .button.gray p, button.gray p, .panel.gray li, .spotlight.gray li, .button.gray li, button.gray li {
+  color: #555;
+}
+.panel p:last-of-type, .panel ul:last-of-type {
+  margin-bottom: 0;
+}
+
+h1.panel, h2.panel, h3.panel, h4.panel, h5.panel, h6.panel, p.panel {
+  padding: 0.625rem 0.9375rem;
+  display: inline-block;
+  font-weight: normal;
+}
+
+/* spotlights */
+.spotlight + .spotlight {
+  margin-top: 1.875rem;
+}
+
+.spotlight {
+  margin: 0;
+  position: relative;
+}
+.spotlight img {
+  width: 100%;
+  opacity: 1;
+  transition: opacity 300ms ease-in-out;
+}
+.spotlight .headline {
+  color: #FFF;
+  padding: .4125em .625em .3125em .625em;
+  margin-top: -.125em;
+  line-height: 1.2;
+  position: relative;
+  z-index: 100000;
+  bottom: 0;
+}
+.spotlight .more {
+  padding: .4em .85em;
+  text-transform: uppercase;
+  font-size: .80em;
+  border: 1px solid #e1e1e1;
+  border-top: 0;
+  background: #FFF;
+}
+.spotlight .more a {
+  font-family: "Trade Gothic", "Verdana", "Roboto", sans-serif !important;
+  font-weight: normal !important;
+}
+.spotlight .more a:hover {
+  color: #F66733 !important;
+}
+.spotlight a:hover img, .spotlight a:focus img {
+  opacity: 0;
+}
+.spotlight a:hover .headline, .spotlight a:focus .headline {
+  position: relative;
+  bottom: .625em;
+  transition: all 300ms ease-in-out;
+}
+.spotlight.orange .more a {
+  color: #F66733;
+}
+.spotlight.regalia .more a {
+  color: #522D80;
+}
+.spotlight.rock .more a {
+  color: #685C53;
+}
+.spotlight.brick .more a {
+  color: #a25016;
+}
+.spotlight.oak .more a {
+  color: #562E19;
+}
+.spotlight.innovation .more a {
+  color: #86898C;
+}
+.spotlight.lace .more a, .spotlight.lace .headline {
+  color: #562E19;
+}
+.spotlight.moon .more a, .spotlight.moon .headline {
+  color: #000000;
+}
+.spotlight.bowman .more a {
+  color: #566127;
+}
+.spotlight.blueridge .more a {
+  color: #3A4958;
+}
+.spotlight.fields .more a {
+  color: #B5C327;
+}
+.spotlight.sky .more a {
+  color: #109DC0;
+}
+.spotlight.gray .more a, .spotlight.gray .headline {
+  color: #555;
+}

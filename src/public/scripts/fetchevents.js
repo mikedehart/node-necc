@@ -44,7 +44,7 @@ exports.processEvents = function(res) {
 
 		events.map((e) => {
 			let cLoc = validateValue(e.location);
-			cLoc = sliceLocation(cLoc);
+			let cLocTitle = sliceLocation(cLoc);
 			let cStart = chooseDate(e.start.date, e.start.dateTime);
 			let cEnd = chooseDate(e.end.date, e.end.dateTime);
 
@@ -61,7 +61,7 @@ exports.processEvents = function(res) {
 				'day': cDay,
 				'time': cTime,
 				'location': {
-					'title': cLoc,
+					'title': cLocTitle,
 					'link': cLLink
 				},
 				'desc': cDesc,

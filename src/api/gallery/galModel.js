@@ -15,6 +15,12 @@ let GalSchema = new Schema({
 		type: String,
 		required: true,
 		unique: true
+	},
+	evtdate: {
+		type: String,
+	},
+	text: {
+		type: String,
 	}
 });
 

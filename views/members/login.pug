@@ -20,13 +20,17 @@ html(lang="en")
 		link(href="css/signin.css" rel="stylesheet" type="text/css")
 
 	body(class="text-center")
-		form(class="form-signin" method="post" action="/admin")
+		form(class="form-signin" method="post" action="/members")
 			img(class="mb-4" src="img/tiger.png" width="100" height="100" alt="NECC Login")
 			h1(class="h3 mb-3 font-weight-normal") Please sign in
-			label(class="sr-only" for="inputUser") Username
-			input(type="user" id="inputUser" name="username" class="form-control" placeholder="Username" required autofocus)
-			label(class="sr-only" for="inputPassword") Password
-			input(type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required)
+			div(class="form-group")
+				label(class="sr-only" for="email") Email Address
+				input(type="user" id="email" name="email" class="form-control" placeholder="name@email.com" required autofocus aria-describedby="txtEmail")
+				small(class="form-text text-muted" id="txtEmail") Email address used when purchasing membership.
+			div(class="form-group")
+				label(class="sr-only" for="sitekey") Membership Key
+				input(type="password" id="sitekey" name="sitekey" class="form-control" placeholder="Key" required aria-describedby="txtKey")
+				small(class="form-text text-muted" id="txtKey") 10-digit key provided after purchasing membership.
 			button(class="btn btn-lg btn-clemson btn-block" type="submit") Sign in
 
 

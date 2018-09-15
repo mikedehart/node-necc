@@ -1,12 +1,13 @@
 const User = require('./userModel');
 const signToken = require('../../auth/auth').signToken;
+const keygen = require('random-key');
 
 exports.params = function(req, res, next, id) {
 	User.findById(id)
 		.then((user) => {
 			if(!user) {
-				//res.status(401).send('No user with given id');
-				next(new Error('No user with given Id!'));
+				res.status(401).send('No user with given id');
+				//next(new Error('No user with given Id!'));
 			} else {
 				req.user = user;
 				next();
@@ -30,12 +31,39 @@ exports.get = function(req, res, next) {
 exports.post = function(req, res, next) {
 	let newUser = new User(req.body);
 
-	newAdmin.save((err, adm) => {
+  let siteKey = keygen.generate(10);
+
+  newUser.sitekey = siteKey;
+
+  let x = newUser.encryptKey(siteKey);
+
+  console.log('Key: '+ siteKey);
+  console.log('E-Key: '+ x);
+
+  User.findOne({ sitekey: x})
+    .then(key => {
+      if(!key) {
+          newUser.save((err, user) => {
+            if(err) {
+              //return next(err);
+              res.status(500).send('Error saving user: ' + err);
+            } else {
+              res.json(user);
+            }
+          });
+      } else {
+        res.status(401).send('Error. Duplicate key generated!');
+      }
+    })
+    .catch(err => res.status(500).send('Error adding user: ' + err));
+
+	newUser.save((err, user) => {
 		if(err) {
-			return next(err);
-		}
-		let token = signToken(adm._id);
-		res.json({ token: token });
+			//return next(err);
+      res.status(500).send('Error saving user: ' + err);
+		} else {
+      res.json(user);
+    }
 	});
 };
 

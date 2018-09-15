@@ -8,8 +8,8 @@ exports.params = function(req, res, next, id) {
 		.exec()
 		.then((user) => {
 			if(!user) {
-				//res.status(401).send('No user with given id');
-				next(new Error('No user with given Id!'));
+				res.status(401).send('No user with given id');
+				//next(new Error('No user with given Id!'));
 			} else {
 				req.user = user;
 				next();

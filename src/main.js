@@ -1,18 +1,24 @@
+
 const express = require('express');
 
-// 3rd Party Middleware
+// 3rd Party Middleware / Libraries
 const bp = require('body-parser');
 const morgan = require('morgan');
 const cp = require('cookie-parser');
+const qs = require('qs');
 
 // Local requires
 const config = require('./conf/conf');
 const clientApi = require('./api');
 const calendar = require('./public/scripts/fetchevents');
+const util = require('./public/scripts/util');
 
 // Routes
 const api = require('./api/api');
 const auth = require('./auth/authRoutes');
+const admin = require('./routes/admin/adminRoutes');
+const members = require('./routes/member/memberRoutes');
+const galleries = require('./routes/gallery/galleryRoutes');
 
 // App
 const app = express();
@@ -31,20 +37,28 @@ app.use(cp(config.client.cookie));
 app.use(express.static(__dirname + '/public'));
 
 // Setup additional routes
-app.use('/api', api);
-app.use('/auth', auth);
+app.use('/api', api); // API endpoint routes
+app.use('/auth', auth); // Authorization routes
+app.use('/admin', admin); // Admin login / console routes
+app.use('/members', members); // Member login / console routes
+app.use('/gallery', galleries); // Gallery routes
 
 
 app.get('/', (req, res, next) => {
-	res.render('index');
+	res.render('index', { title: 'Home' });
 })
 
 app.get('/events', (req, res, next) => {
-	clientApi.getCal(config.client.calendar)
+	clientApi.getCal()
 		.then((response) => {
-			console.log(response);
 			let calItems = calendar.processEvents(response);
-			res.render('events', { 'dates': calItems });
+			let locUrl = config.client.location.url;
+			let calUrl = config.client.calendar.url;
+			res.render('events', { 
+				dates: calItems, 
+				mapsUrl: locUrl,
+				calUrl: calUrl,
+				title: 'Events' });
 		})
 		.catch((err) => next(new Error(err.toString())));
 
@@ -52,106 +66,24 @@ app.get('/events', (req, res, next) => {
 })
 
 app.get('/service', (req, res, next) => {
-	res.render('service');
+	res.render('service', { title: 'Service' });
 })
 
 app.get('/membership', (req, res, next) => {
-	res.render('membership');
-})
-
-const fs = require('fs');
-
-app.get('/gallery', (req, res, next) => {
-	res.render('gallery');
-})
-
-app.get('/gallery/:id', (req, res, next) => {
-	if(!req.params.id) {
-		next(new Error('No image gallery provided'));
-	} else {
-		const fldr = req.params.id;
-		const imgPath = `/img/events/${fldr}/`;
-		const osFldr = (__dirname + `/public/${imgPath}`);
-		let imgs = [];
-
-		fs.readdir(osFldr, (err, files) => {
-			if(err) {
-				next(new Error('Invalid image path!'));
-				return;
-			} else {
-				files.forEach((file) => {
-					console.log(file);
-					imgs.push(file);
-				});
-				res.render('gallery', {
-					path: imgPath,
-					imgs: imgs
-				});
-			}
-		});
-	}
-})
-
-// -------------- Admin Routes ---------------
-
-// Check for cookie. 
-//   If no cookie, send to login page
-//   Else, authorize cookie and make sure ID is correct
-app.get('/admin', (req, res, next) => {
-	let cookies = req.signedCookies['necc_token'];
-	if(cookies) {
-		clientApi.verify(cookies)
-			.then(isValid => {
-				if(!isValid) {
-					res.render('error', { title: 'Invalid token!',
-								message: 'Your token does not validate. Try deleting cache / cookies and try again.'})
-				} else {
-					res.render('admin/console');
-				}
-			})
-			.catch(err => next(err));
-	} else {
-		res.render('admin/login');
-	}
-});
-
-// 
-app.get('/login', (req, res, next) => {
-	res.render('admin/login.pug');
-});
-
-
-
-// Login page submits here
-app.post('/authorize', (req, res, next) => {
-	const username = req.body.username;
-	const password = req.body.password;
-	if(!username || !password) {
-		res.render('error', { title: 'No username / password given',
-								message: 'One of the two was missing. Try again.'})
-		return;
-	} else {
-		clientApi.login(username, password)
-			.then(token => {
-				if(!token) {
-					res.render('error', {title: 'Incorrect username / password',
-						message: 'Try again'});
-				} else {
-					res.cookie('necc_token', token.data, { signed: true });
-					res.redirect('/admin');
-				}
-			})
-			.catch((err) => next(err));
-	}
+	res.render('membership', { title: 'Membership' });
 })
 
 
-// Final error handling function
+
+
+
+// ------- Final Error Handling -------
+
 app.use((err, req, res, next) => {
 	// If error thrown from JWT validation
 	if(err.name === 'UnauthorizedError') {
-		res.status(401).send('No authorization token found!');
-		//res.render('error', { title: 'Invalid Token!', message: err.stack });
+		//res.status(401).send('No authorization token found!');
+		res.render('error', { title: 'Invalid Token!', message: err.stack });
 		return;
 	}
 	res.render('error', { title: err, message: err.stack });

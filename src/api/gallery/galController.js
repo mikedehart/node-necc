@@ -6,13 +6,14 @@ exports.params = function(req, res, next, id) {
 	Gallery.findOne({ dirname: id })
 		.then((gallery) => {
 			if(!gallery) {
-				//res.status(401).send('No user with given id');
-				next(new Error('No gallery that matches!'));
+				res.status(401).send('No user with given id');
+				//next(new Error('No gallery that matches!'));
 			} else {
 				req.gallery = gallery;
 				next();
 			}
 		}, (err) => {
+      console.log(err);
 			next(err);
 		});
 };
@@ -45,7 +46,7 @@ exports.post = function(req, res, next) {
 
 exports.getOne = function(req, res, next) {
   var gallery = req.gallery;
-  res.json(user);
+  res.json(gallery);
 };
 
 exports.put = function(req, res, next) {
@@ -65,7 +66,8 @@ exports.put = function(req, res, next) {
 };
 
 exports.delete = function(req, res, next) {
-  req.user.remove(function(err, removed) {
+  console.log(req.gallery);
+  req.gallery.remove(function(err, removed) {
     if (err) {
       next(err);
     } else {

@@ -1,44 +1,53 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
+const keygen = require('random-key');
 
 let UserSchema = new Schema({
-	userid: {
-		type: Number,
-		required: true,
-		unique: true
-	},
 	fname: {
-		type: String
+		type: String,
 	},
 	lname: {
 		type: String
 	},
 	email: {
-		type: String
+		type: String,
+		unique: true,
+		required: true
 	},
 	subscribed: {
 		type: Boolean
+	},
+	signdate: {
+		type: Date,
+		required: true
+	},
+	sitekey: {
+		type: String,
+		unique: true,
+		required: true
 	}
 });
 
-// Prior to saving user, encrypt email address
+// Prior to saving user, encrypt site key
 UserSchema.pre('save', function(next) {
-	if(!this.isModified('email')) return next();
-	this.email = this.encryptEmail(this.email);
+	if(!this.isModified('sitekey')) return next();
+	console.log('plain key: ' + this.sitekey);
+	this.sitekey = this.encryptKey(this.sitekey);
 	next();
 })
 
 UserSchema.methods = {
-	authenticate: function(plainEmail) {
-	return bcrypt.compareSync(plainEmail, this.email);
+	authenticate: function(plainKey) {
+	return bcrypt.compareSync(plainKey, this.sitekey);
 	},
-	encryptEmail: function(plainEmail) {
-		if(!plainEmail) {
+	encryptKey: function(plainKey) {
+		if(!plainKey) {
 			return '';
 		} else {
-			const salt = bcrypt.getSaltSync(10);
-			return bcrypt.hashSync(plainEmail, salt);
+			console.log('encrypting...');
+			const salt = bcrypt.genSaltSync(10);
+			return bcrypt.hashSync(plainKey, salt);
 		}
 	}
 };
