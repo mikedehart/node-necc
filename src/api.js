@@ -27,7 +27,7 @@ exports.verify = function(token) {
 };
 
 
-/* GET FUNCTIONS FOR CALENDAR / GALLERIES 
+/* FUNCTIONS FOR CALENDAR / GALLERIES 
 -------------------------------------------*/
 
 exports.getCal = function() {
@@ -58,6 +58,18 @@ exports.getGallery = function(id) {
 		.catch((err) => console.log('ERROR: ' + err));
 };
 
+exports.addGallery = function(title, path, dirname, evtdate, text) {
+	return axios.post(`${clientUrl}/api/gallery`, {
+		title,
+		path,
+		dirname,
+		evtdate,
+		text
+	})
+		.then() //TODO
+		.catch(err => console.error(err));
+};
+
 /* USER CREATE / FETCH FUNCTIONS
 ----------------------------------- */
 
@@ -71,17 +83,22 @@ exports.createUser = function(id, fname, lname, email, sub) {
 		subscribed: sub,
 	})
 	.then((res) => {
-		console.log('RETURN FROM CREATE: ' + res);
-		res.data;
+		console.log('createuser returning...');
+		console.log(res.data);
+		console.log('SIGN KEY? ' + res.data.plainkey);
+		return res.data;
 	})
-	.catch(err => console.error(err));
+	.catch(err => {
+		console.error(err);
+		return err;
+	});
 };
 
 
 /* PAYPAL FUNCTIONS 
 ----------------------*/
 
-exports.getToken = function() {
+exports.getToken = function(client_id, secret) {
 
 	const url = 'https://api.sandbox.paypal.com/v1/oauth2/token';
 	const data = {

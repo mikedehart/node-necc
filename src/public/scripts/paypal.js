@@ -29,12 +29,16 @@ paypal.Button.render({
 	    	})
 	    	.then(function(res) {
 	    		//jquery here?
+	    		console.log('in paypal script....');
 	    		console.log(res);
 	    		console.log(res.status);
 	    		console.log(res.id);
-	    		console.log(res.user);
+	    		console.log(res.key);
 	    		console.log(res.url);
-	    		//window.location = res.url;
+	    		//window.alert(res);
+	    		//$('.modal-div').append('PAYPAL DONE!' + res.key);
+	    		window.location = res.url;
 	    	})
+	    	.catch(err => window.alert(err));
 	    }
 	  }, '#paypal-button');

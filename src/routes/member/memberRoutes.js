@@ -2,10 +2,11 @@ const router = require('express').Router();
 const controller = require('./memberController');
 
 
+router.param('id', controller.confirmation);
+
 router.route('/')
 	.get(controller.get) // Get members login page
 	.post(controller.login); // Login route
-
 
 router.route('/create')
 	.post(controller.getPayment); // Create payment obj

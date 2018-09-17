@@ -8,6 +8,9 @@ block header
 
 block content
 	div(class="row")
+		button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#subModal") Modal
+
+	div(class="row")
 		h1(class="mt-2") About Membership
 		p(class="lead") The New England Clemson Club (NECC)  is part of a network of regional clubs within the U.S. that are affiliated with the Clemson Alumni Association. The dues paid to the Club help provide the financial resources and support needed to host football game watches, networking events, social events like our annual accepted student send-off party, and more!
 
@@ -16,10 +19,10 @@ block content
 		h3 Benefits Include:
 	div(class="row")
 		ul(class="mb-4") 
-			li Access to NECC block tickets for the Clemson vs. Boston College game on 11/10
+			li Access to NECC block tickets for the Clemson vs. Boston College game (when @ Boston College)
 			li Food specials at game viewing parties
 			li Advanced ticket purchases
-			li Early bird ticket prices
+			li Early bird ticket prices	
 			li Invitations/Access to Members-Only events
 			li Raffles
 			li Networking events
@@ -45,3 +48,14 @@ block content
 
 	hr(class="featurette-divider")
 block scripts
+	//- div(class="modal" id="subModal" tabindex="-1" role="dialog" style="width:500px; height: 500px;" aria-hidden="true")
+	//- 		div(class="modal-content")
+	//- 			div(class="modal-header")
+	//- 				h5(class="modal-title") Modal title
+	//- 				button(type="button" class="close" data-dismiss="modal" data-target="#subModal" aria-label="Close")
+	//- 					span(aria-hidden="true") &times;
+	//- 			div(class="modal-body")
+	//- 				p Modal body text here.
+	//- 			div(class="modal-footer")
+	//- 				button(type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#subModal") Close
+	//- 				button(type="button" class="btn btn-primary") Save

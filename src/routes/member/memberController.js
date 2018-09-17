@@ -24,6 +24,8 @@ exports.login = function(req, res, next) {
 
 // Called when user clicks paypal button
 exports.getPayment = function(req, res, next) {
+	const clientID = config.paypal.client_id;
+	const secret = config.paypal.secret;
 	clientApi.getToken()
 		.then((response) => {
 			const options = {
@@ -101,14 +103,19 @@ exports.authPayment = function(req, res, next) {
 						clientApi.createUser(cId, cFname, cLname, cEmail)
 							.then((user) => {
 								if(!user) {
-									res.status(500).send('Error adding user!');
+									//res.status(501).send('Error adding user! Duplicate email.');
+									next(new Error('Error adding user! ' + user));
 								} else {
-									let url = config.client.url;
+									console.log(user.plainkey);
+									//let url = config.client.url;
+
+									let url = `${config.client.url}/members/${user.id}?authkey=${user.plainkey}`;
 									res.json({
 										url,
 										status: payment.data.state,
-										user,
-										id: user.purchase_id
+										email: user.email,
+										key: user.plainkey,
+										id: user.id
 									});
 								}
 							})
@@ -117,7 +124,7 @@ exports.authPayment = function(req, res, next) {
 						res.send('members/pay-failed');
 					}
 				})
-				.catch(err => console.error(err));
+				.catch(err => next(err));
 		})
 		.catch(err => console.error(err));
 };
@@ -130,13 +137,19 @@ exports.authPayment = function(req, res, next) {
 // be saved after payment approval.
 
 exports.confirmation = function(req, res, next, id) {
+	console.log(req.query); //TODO: send key in query param to print.
+	// call by user ID and pull up user.
+	// render confirmation page?
+	// If no user, render a failed page?
+	console.log(req.params);
 	console.log(id);
-	User.findOne({ purchase_id: id })
+	User.findById(id)
 		.then((user) => {
 			if(!user) {
 				// send to failed page
+				console.log('No user!');
 			} else {
-				// send details to user?
+				console.log('User exists congrats!');
 			}
 		})
 		.catch((err) => console.error(err));

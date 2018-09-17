@@ -20,6 +20,7 @@ exports.params = function(req, res, next, id) {
 
 // -------- Root Routes --------
 
+// Get all galleries
 exports.get = function(req, res, next) {
   Gallery.find({})
     .then(function(gallery){
@@ -29,6 +30,7 @@ exports.get = function(req, res, next) {
     });
 };
 
+// Create new gallery
 exports.post = function(req, res, next) {
 	let newGallery = new Gallery(req.body);
 
@@ -44,11 +46,13 @@ exports.post = function(req, res, next) {
 
 // -------- ID Routes --------
 
+// Get single gallery (by dirname)
 exports.getOne = function(req, res, next) {
   var gallery = req.gallery;
   res.json(gallery);
 };
 
+// Update gallery (by dirname)
 exports.put = function(req, res, next) {
   var gallery = req.gallery;
 
@@ -65,6 +69,8 @@ exports.put = function(req, res, next) {
   })
 };
 
+
+// Delete gallery (by dirname)
 exports.delete = function(req, res, next) {
   console.log(req.gallery);
   req.gallery.remove(function(err, removed) {

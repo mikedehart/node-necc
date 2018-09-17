@@ -11,7 +11,7 @@ const qs = require('qs');
 const config = require('./conf/conf');
 const clientApi = require('./api');
 const calendar = require('./public/scripts/fetchevents');
-const util = require('./public/scripts/util');
+const util = require('./public/scripts/serverutils');
 
 // Routes
 const api = require('./api/api');

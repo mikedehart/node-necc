@@ -34,40 +34,33 @@ exports.post = function(req, res, next) {
 
   newUser.sitekey = siteKey;
 
-  let cryptKey = newUser.encryptKey(siteKey);
+  console.log('Key: '+ newUser.sitekey);
 
-  console.log('Key: '+ siteKey);
-  console.log('E-Key: '+ cryptKey);
-
-  User.findOne({ sitekey: cryptKey })
-    .then(key => {
-      if(!key) {
-          newUser.save((err, user) => {
-            if(err) {
-              return next(err);
-              //res.status(500).send('Error saving user: ' + err);
-            } else {
-              user.plainkey = siteKey;
-              console.log(user);
-              res.json(user);
-            }
-          });
-      } else {
-        res.status(401).send('Error. Duplicate key generated!');
-      }
-    })
-    .catch(err => res.status(500).send('Error adding user: ' + err));
-
-	newUser.save((err, user) => {
-		if(err) {
-			//return next(err);
+  newUser.save((err, user) => {
+    if(err) {
+      //return next(err);
+      console.log('ERROR! Saving User (User Controller): ' + err);
       res.status(500).send('Error saving user: ' + err);
-      return;
-		} else {
-      res.json(user);
+    } else {
+
+      let userObj = {
+        name: `${user.fname} ${user.lname}`,
+        id: user._id,
+        pid: user.purchase_id,
+        email: user.email,
+        plainkey: siteKey,
+        hashkey: user.sitekey
+      };
+
+      console.log(`UserObj: ${userObj.plainkey} - ${userObj.id}`);
+      console.log('AUTH: ' + user.authenticate(userObj.plainkey));
+
+      res.json(userObj);
     }
-	});
+  });
+
 };
+
 
 // -------- ID Routes --------
 
