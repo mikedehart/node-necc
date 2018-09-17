@@ -67,5 +67,8 @@ typings/
 # Ignore active config file (added config template)
 src/conf/conf.js
 
+# Email information stored here
+src/public/scripts/clientutils.js
+
 # Misc
 # views/template.html
