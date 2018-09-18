@@ -5,6 +5,7 @@ block header
 	include includes/carousel.pug
 
 block content
+	// TODO: add donate button
 	// Welcome Row
 	div(class="row featurette")
 		div(class="col-md-7")
@@ -19,28 +20,27 @@ block content
 	// ============================================================
 	// 3-Column Spotlights
 	div(class="row")
+		
 		div(class="col-lg-4")
-			//img(class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140")
-			img(class="rounded-circle" src="img/tiger.png" alt="Events" width="200" height="200")
+			img(class="rounded-circle" src="img/white.png" style="background-color: #F66733;" alt="Events" width="200" height="200")
+			h2 Facebook
+			p Upcoming events and information about the club are regularly posted to our Facebook page. Check it out!
+			p
+				a(class="btn btn-clemson" href="https://www.facebook.com/NewEnglandClemsonClub" role="button") Open Facebook &raquo;
+
+		div(class="col-lg-4")
+			img(class="rounded-circle" src="img/cwharf.jpg" alt="Membership" width="200" height="200")
 			h2 Events
 			p We hold events throughout the year including game watch parties, networking events, and fundraising campaigns.
 			p
-				a(class="btn btn-clemson" href="#" role="button") View events &raquo;
+				a(class="btn btn-clemson" href="/events" role="button") View events &raquo;
 
 		div(class="col-lg-4")
-			img(class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="200" height="200")
-			h2 Acaedmics
-			p Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.
-			p
-				a(class="btn btn-clemson" href="#" role="button") View details &raquo;
-
-		div(class="col-lg-4")
-			//img(class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140")
 			img(class="rounded-circle" src="img/necc_logo.png" alt="Membership" width="200" height="200")
-			h2 Membership
-			p Alumni members enjoy benefits such as event tickets, access, blah blah.
+			h2 Donate
+			p If you enjoy what we do, consider donating! All donations go toward funding our yearly events and game-watch parties.
 			p
-				a(class="btn btn-clemson" href="#" role="button") Learn more &raquo;
+				a(class="btn btn-clemson" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XAUPFKF4T965J" role="button") Donate &raquo;
 
 	hr(class="featurette-divider")
 

@@ -2,6 +2,7 @@ const axios = require('axios');
 const clientApi = require('../../api');
 const config = require('../../conf/conf');
 const User = require('../../api/user/userModel');
+const mongoose = require('mongoose');
 
 
 // Pull up login page
@@ -11,12 +12,23 @@ exports.get = function(req, res, next) {
 
 // Log in to members area
 exports.post = function(req, res, next) {
-	res.render('members/console');
+	const email = req.body.email;
+	const key = req.body.sitekey
+	clientApi.authUser(email, key)
+		.then((user) => {
+			if(!user) {
+				res.render('members/login', {
+					message: 'Login failed! Incorrect email / key'
+				});
+			} else {
+				res.render('members/console', {
+					name: user.fname
+				});
+			}
+		})
+		.catch((err) => console.error(err));
 };
 
-exports.login = function(req, res, next) {
-
-};
 
 /* Paypal Functions
 ----------------------- */
@@ -106,16 +118,9 @@ exports.authPayment = function(req, res, next) {
 									//res.status(501).send('Error adding user! Duplicate email.');
 									next(new Error('Error adding user! ' + user));
 								} else {
-									console.log(user.plainkey);
-									//let url = config.client.url;
-
 									let url = `${config.client.url}/members/${user.id}?authkey=${user.plainkey}`;
 									res.json({
-										url,
-										status: payment.data.state,
-										email: user.email,
-										key: user.plainkey,
-										id: user.id
+										url
 									});
 								}
 							})
@@ -137,20 +142,36 @@ exports.authPayment = function(req, res, next) {
 // be saved after payment approval.
 
 exports.confirmation = function(req, res, next, id) {
-	console.log(req.query); //TODO: send key in query param to print.
-	// call by user ID and pull up user.
-	// render confirmation page?
-	// If no user, render a failed page?
-	console.log(req.params);
-	console.log(id);
-	User.findById(id)
-		.then((user) => {
-			if(!user) {
-				// send to failed page
-				console.log('No user!');
-			} else {
-				console.log('User exists congrats!');
-			}
-		})
-		.catch((err) => console.error(err));
+	const authKey = req.query.authkey;
+	const userId = id.toString();
+
+	if(!mongoose.Types.ObjectId.isValid(userId)) {
+		res.render('error', {
+			title: 'Incorrect ID sent!',
+			message: 'An invalid id was received.'
+		});
+	} else if(!authKey) {
+		res.render('members/pay-failed', {
+			message: 'Authorization key not sent!'
+		});
+	} else {
+		User.findById(userId)
+			.then((user) => {
+				if(!user) {
+					// send to failed page
+					res.render('members/pay-failed', { 
+						message: 'User was not added to the database!'
+					});
+				} else {
+					res.render('members/pay-success', {
+						purchase_id: user.purchase_id,
+						auth: authKey,
+						email: user.email,
+						name: user.fname + ' ' + user.lname,
+						id: user._id
+					});
+				}
+			})
+			.catch((err) => console.error(err));
+	}
 };

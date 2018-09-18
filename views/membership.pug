@@ -1,15 +1,12 @@
 extends layout.pug
 
 block header
-	div(class="jumbotron mbr-jumbo p-3 p-md-5 text-white")
+	div(class="jumbotron necc-jumbo mbr-jumbo p-3 p-md-5 text-white")
 		div(class="col-md-6 px-0")
 			h1(class="display-3") Membership
 			p(class="lead my-3") Did you know? There is a thriving Clemson community right here in New England. We would love for you to be a part of it! Join us or renew your membership today for just $25.
 
 block content
-	div(class="row")
-		button(type="button" class="btn btn-primary" data-toggle="modal" data-target="#subModal") Modal
-
 	div(class="row")
 		h1(class="mt-2") About Membership
 		p(class="lead") The New England Clemson Club (NECC)  is part of a network of regional clubs within the U.S. that are affiliated with the Clemson Alumni Association. The dues paid to the Club help provide the financial resources and support needed to host football game watches, networking events, social events like our annual accepted student send-off party, and more!
@@ -35,7 +32,7 @@ block content
 			h3 Already a member?
 			small(text="text-muted") Event tickets and other member-only benefits can be accessed below.
 			div(class="col-md-12")
-				a(class="btn btn-clemson mt-3" href="#") Log in
+				a(class="btn btn-clemson mt-3" href="/members") Log in
 
 
 		div(class="col-md-5 text-center mbr-signup rounded")
@@ -48,14 +45,3 @@ block content
 
 	hr(class="featurette-divider")
 block scripts
-	//- div(class="modal" id="subModal" tabindex="-1" role="dialog" style="width:500px; height: 500px;" aria-hidden="true")
-	//- 		div(class="modal-content")
-	//- 			div(class="modal-header")
-	//- 				h5(class="modal-title") Modal title
-	//- 				button(type="button" class="close" data-dismiss="modal" data-target="#subModal" aria-label="Close")
-	//- 					span(aria-hidden="true") &times;
-	//- 			div(class="modal-body")
-	//- 				p Modal body text here.
-	//- 			div(class="modal-footer")
-	//- 				button(type="button" class="btn btn-secondary" data-dismiss="modal" data-target="#subModal") Close
-	//- 				button(type="button" class="btn btn-primary") Save

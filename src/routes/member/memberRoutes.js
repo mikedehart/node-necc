@@ -6,7 +6,7 @@ router.param('id', controller.confirmation);
 
 router.route('/')
 	.get(controller.get) // Get members login page
-	.post(controller.login); // Login route
+	.post(controller.post); // Login route
 
 router.route('/create')
 	.post(controller.getPayment); // Create payment obj

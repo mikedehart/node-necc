@@ -1,67 +1,29 @@
-doctype html
-html(lang="en")
-	head
-		meta(charset="utf-8")
-		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
-		meta(name="description" content="NECC Console")
-		meta(name="author" content="Mike DeHart")
-		title NECC Console
+extends ../layout.pug
 
-		// Favicon
-		link(rel="icon" href="img/favicon.ico")
+block header
+	div(class="jumbotron necc-jumbo portal-jumbo p-3 p-md-5 text-white")
+		div(class="col-md-6 px-0")
+			h1(class="display-3") Member Portal
+			h3(class="" style="text-shadow: none;") Welcome 
+				span= name
+				span  
+				span(class="icon-paw") 
 
-		// Bootstrap CSS
-		link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous")
+block content
+	div(class="row")
+		h2(class="display-4 mb-3 font-weight-bold") Announcements
+	div(class="row ml-4")
+		h3 Clemson @ Boston College Tickets (11/10/2018)
+		p We have partnered with the University, Clemson Athletics, and IPTAY to reserve a block of seats at the Clemson vs. Boston College game on 11/10. Tickets are available exclusively to NECC members on a first-come, first served basis. Purchase your tickets below!
+	div(class="row ml-4")
+		a(class="btn btn-clemson text-white" href="https://groupmatics.events/event/Newengland4") Purchase Tickets!
+	
+	div(class="row mt-5")
+		p Questions about our events? 
+			a(href="#" onclick="getEmail();") Email us!
 
-		// Custom CSS
-		link(href="css/base.css" rel="stylesheet" type="text/css")
+	hr(class="featurette-divider")
 
-	body
-		main(role="main" class="container")
-			div(class="row")
-				div(class="col-md-12 col-sm-12")
-					h1(class="display-3 text-center") NECC Console
 
-			div(class="row")
-				div(class="col-md-6 form-div")
-					h2(class="display-4 text-center mb-3") Gallery Upload
-					form
-						div(class="form-group")
-							label(for="gTitle") Title
-							input(type="text" name="gTitle" class="form-control" id="titleInput" aria-describedby="titleHelp" placeholder="Title")
-							small(class="form-text text-muted" id="titleHelp") Title of gallery page.
-						div(class="form-row")
-							div(class="form-group col-md-6")
-								label(for="gMonth") Month
-								select(class="form-control" name="gMonth" id="gMonth")
-									option(selected) Jan
-									option Feb
-									option Mar
-									option Apr
-									option May
-									option Jun
-									option Jul
-									option Aug
-									option Sept
-									option Oct
-									option Nov
-									option Dec
-							div(class="form-group col-md-6")
-								label(for="gYear") Year
-								input(type="text" name="gYear" class="form-control" id="gYear" placeholder="2018")
-						div(class="form-group")
-							label(for="gTxt") Description
-							textarea(class="form-control" name="gTxt" id="txtInput" aria-describedby="txtHelp")
-							small(class="form-text text-muted" id="txtHelp") Text description for the gallery.
-						div(class="form-group")
-							label(for="gFile") Zip File
-							input(type="file" class="form-control-file" name="gFile" id="fileInput")
-						div(class="form-group")
-							button(class="btn btn-clemson btn-block" type="submit") Submit
-
-				div(class="col-md-6 form-div")
-					h2(class="display-4 text-center") Get members
-					p(class="lead") Export list of members signed up from the site. List is in CSV format.
-					button(class="btn btn-clemson btn-block" type="button") Export
-				
-
+block scripts
+	script(src="/scripts/clientutils.js" type="text/javascript")

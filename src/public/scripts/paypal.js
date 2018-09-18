@@ -28,15 +28,11 @@ paypal.Button.render({
 	    		payerID: data.payerID
 	    	})
 	    	.then(function(res) {
-	    		//jquery here?
-	    		console.log('in paypal script....');
-	    		console.log(res);
-	    		console.log(res.status);
-	    		console.log(res.id);
-	    		console.log(res.key);
-	    		console.log(res.url);
-	    		//window.alert(res);
-	    		//$('.modal-div').append('PAYPAL DONE!' + res.key);
+	    		if(res.url) {
+
+	    		} else {
+	    			window.alert('Error processing purchase!');
+	    		}
 	    		window.location = res.url;
 	    	})
 	    	.catch(err => window.alert(err));

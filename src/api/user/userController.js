@@ -34,8 +34,6 @@ exports.post = function(req, res, next) {
 
   newUser.sitekey = siteKey;
 
-  console.log('Key: '+ newUser.sitekey);
-
   newUser.save((err, user) => {
     if(err) {
       //return next(err);
@@ -51,16 +49,35 @@ exports.post = function(req, res, next) {
         plainkey: siteKey,
         hashkey: user.sitekey
       };
-
-      console.log(`UserObj: ${userObj.plainkey} - ${userObj.id}`);
-      console.log('AUTH: ' + user.authenticate(userObj.plainkey));
-
       res.json(userObj);
     }
   });
 
 };
 
+/*
+  Used to log user into members-only section.
+  Since user can have multiple emails, need to grab
+  all users by email and check which will authenticate
+  if none, return undefined.
+---------------------------------------------------- */
+
+exports.lookup = function(req, res, next) {
+
+  const email = req.body.email;
+  const key = req.body.sitekey;
+
+  let currentUser;
+
+  User.find({ email: email })
+    .then((users) => {
+      currentUser =  users.filter((user) => {
+        if (user.authenticate(key)) return user;
+      });
+      res.json(currentUser[0] || undefined);
+    })
+    .catch((err) => console.error(err));
+};
 
 // -------- ID Routes --------
 
@@ -93,8 +110,4 @@ exports.delete = function(req, res, next) {
       res.json(removed);
     }
   });
-};
-
-exports.me = function(req, res) {
-  res.json(req.user.toJson());
 };

@@ -2,20 +2,23 @@ const router = require('express').Router();
 const controller = require('./adminController');
 const auth = require('../../auth/auth');
 
-//TODO: Close off these routes! Except one needed to verify JWT
+/*
 
-const authMiddleware = [auth.decodeToken(), auth.verifyToken()];
+Routes closed off in production.
 
+No need to add/modify admin users. Using one for all admins for now.
 
-router.param('id', controller.params);
+---------------------------------- */
 
-router.route('/')
-	.get(controller.get) // get all admins
-	.post(controller.post) // create new admin
+//router.param('id', controller.params);
 
-router.route('/:id')
-	.get(controller.getOne) // get admin with ID
-	.put(controller.put) // update admin by ID
-	.delete(controller.delete) // delete admin by ID
+// router.route('/')
+// 	.get(controller.get) // get all admins
+// 	.post(controller.post) // create new admin
+
+// router.route('/:id')
+// 	.get(controller.getOne) // get admin with ID
+// 	.put(controller.put) // update admin by ID
+// 	.delete(controller.delete) // delete admin by ID
 
 module.exports = router;

@@ -8,13 +8,15 @@ const clientUrl = config.client.url;
 /* AUTHORIZATION FUNCTIONS 
 ----------------------------*/
 
+
+/* ADMIN */
 exports.login = function(user, pass) {
 	return axios.post(`${clientUrl}/auth/signin`, {
 		username: user,
 		password: pass
 	})
 	.then((data) => data)
-	.catch((err) => console.log('ERROR: ' + err));
+	.catch((err) => console.error('ERROR: ' + err));
 };
 
 exports.verify = function(token) {
@@ -23,8 +25,25 @@ exports.verify = function(token) {
 		access_token: _token
 	})
 	.then((data) => data)
-	.catch((err) => console.log('ERROR: ' + err));
+	.catch((err) => console.error('ERROR: ' + err));
 };
+
+
+/* USER */
+exports.authUser = function(email, key) {
+	return axios.post(`${clientUrl}/api/user/lookup`, {
+		email: email,
+		sitekey: key
+	})
+		.then((user) => {
+			if(!user) {
+				return undefined;
+			} else {
+				return user.data;
+			}
+		})
+		.catch((err) => console.error(err));
+}
 
 
 /* FUNCTIONS FOR CALENDAR / GALLERIES 
@@ -83,9 +102,6 @@ exports.createUser = function(id, fname, lname, email, sub) {
 		subscribed: sub,
 	})
 	.then((res) => {
-		console.log('createuser returning...');
-		console.log(res.data);
-		console.log('SIGN KEY? ' + res.data.plainkey);
 		return res.data;
 	})
 	.catch(err => {
@@ -93,6 +109,8 @@ exports.createUser = function(id, fname, lname, email, sub) {
 		return err;
 	});
 };
+
+
 
 
 /* PAYPAL FUNCTIONS 

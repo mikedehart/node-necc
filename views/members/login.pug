@@ -1,28 +1,48 @@
 doctype html
 html(lang="en")
 	head
-		include ../includes/head.pug
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		meta(name="description" content="New Engand Clemson Club")
+		meta(name="author" content="Mike DeHart")
+		title NECC Login
+
+		// Favicon
+		link(rel="icon" href="img/favicon.ico")
+
+		// Bootstrap CSS
+		link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous")
+
+		// Custom CSS
+		link(href="css/base.css" rel="stylesheet" type="text/css")
 
 		// Login page CSS
-		link(href="/css/signin.css" rel="stylesheet" type="text/css")
+		link(href="css/signin.css" rel="stylesheet" type="text/css")
 
 	body(class="text-center")
 		include ../includes/navbar.pug
-		main(role="main")
-			// ======Main Content======
-			div(class="container marketing text-center")
-				form(class="form-signin text-center" method="post" action="/members")
-					img(class="mb-4" src="/img/tiger.png" width="100" height="100" alt="NECC Login")
-					h1(class="h3 mb-3 font-weight-normal") Please sign in
-					div(class="form-group")
-						label(class="sr-only" for="email") Email Address
-						input(type="user" id="email" name="email" class="form-control" placeholder="name@email.com" required autofocus aria-describedby="txtEmail")
-						small(class="form-text text-muted" id="txtEmail") Email address used when purchasing membership.
-					div(class="form-group")
-						label(class="sr-only" for="sitekey") Membership Key
-						input(type="password" id="sitekey" name="sitekey" class="form-control" placeholder="Key" required aria-describedby="txtKey")
-						small(class="form-text text-muted" id="txtKey") 10-digit key provided after purchasing membership.
-					button(class="btn btn-lg btn-clemson btn-block" type="submit") Sign in
+		form(class="form-signin" method="post" action="/members")
+			img(class="mb-4" src="img/tiger.png" width="100" height="100" alt="NECC Login")
+			h1(class="h3 mb-3 font-weight-normal") Please sign in
+			h1(class="h3 mb-3 text-danger")= message
 
-				// ======Footer======
-				include ../includes/footer.pug
+			label(class="sr-only" for="email") Email Address
+			input(type="user" id="email" name="email" class="form-control" placeholder="name@email.com" required autofocus aria-describedby="txtEmail")
+			small(class="form-text text-muted mb-2" id="txtEmail") Email address used when purchasing membership.
+
+
+			label(class="sr-only" for="sitekey") Membership Key
+			input(type="password" id="sitekey" name="sitekey" class="form-control" placeholder="key" required aria-describedby="txtKey")
+			small(class="form-text text-muted mb-2" id="txtKey") 10-digit key provided after purchasing membership.
+
+			button(class="btn btn-lg btn-clemson btn-block" type="submit") Sign in
+
+			p(class="mt-4") Problems logging in or lost your key? 
+				span 
+					a(class="font-weight-bold" href="#" onclick="getEmail();") Email us
+
+
+	script(src="/scripts/clientutils.js" type="text/javascript")
+
+
+
