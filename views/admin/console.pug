@@ -25,7 +25,7 @@ html(lang="en")
 			div(class="row")
 				div(class="col-md-6 form-div")
 					h2(class="display-4 text-center mb-3") Gallery Upload
-					form
+					form(method="post" action="/gallery" novalidate enctype="multipart/form-data")
 						div(class="form-group")
 							label(for="gTitle") Title
 							input(type="text" name="gTitle" class="form-control" id="titleInput" aria-describedby="titleHelp" placeholder="Title")
@@ -49,6 +49,9 @@ html(lang="en")
 							div(class="form-group col-md-6")
 								label(for="gYear") Year
 								input(type="text" name="gYear" class="form-control" id="gYear" placeholder="2018")
+						div(class="form-group")
+							label(for="gDir") Directory Name
+							input(type="text" name="gDir" class="form-control" id="gDir" placeholder="no spaces!")
 						div(class="form-group")
 							label(for="gTxt") Description
 							textarea(class="form-control" name="gTxt" id="txtInput" aria-describedby="txtHelp")

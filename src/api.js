@@ -2,7 +2,7 @@ const axios = require('axios');
 const config = require('./conf/conf');
 const qs = require('qs');
 
-const clientUrl = config.client.url;
+const apiUrl = config.api.url;
 
 
 /* AUTHORIZATION FUNCTIONS 
@@ -11,7 +11,7 @@ const clientUrl = config.client.url;
 
 /* ADMIN */
 exports.login = function(user, pass) {
-	return axios.post(`${clientUrl}/auth/signin`, {
+	return axios.post(`${apiUrl}/auth/signin`, {
 		username: user,
 		password: pass
 	})
@@ -21,17 +21,17 @@ exports.login = function(user, pass) {
 
 exports.verify = function(token) {
 	const _token = token;
-	return axios.post(`${clientUrl}/auth/checktoken`, {
+	return axios.post(`${apiUrl}/auth/checktoken`, {
 		access_token: _token
 	})
-	.then((data) => data)
+	.then((data) => data.data)
 	.catch((err) => console.error('ERROR: ' + err));
 };
 
 
 /* USER */
 exports.authUser = function(email, key) {
-	return axios.post(`${clientUrl}/api/user/lookup`, {
+	return axios.post(`${apiUrl}/api/user/lookup`, {
 		email: email,
 		sitekey: key
 	})
@@ -51,7 +51,7 @@ exports.authUser = function(email, key) {
 
 exports.getCal = function() {
 	const calName = config.client.calendar.name;
-	const calKey = config.client.key;
+	const calKey = config.client.calendar.key;
 	const currDate = new Date().toISOString();
 
 	if(!calName || !calKey) {
@@ -66,26 +66,29 @@ exports.getCal = function() {
 };
 
 exports.getGalleries = function() {
-		return axios.get(`${clientUrl}/api/gallery`)
+		return axios.get(`${apiUrl}/api/gallery`)
 			.then((galleries) => galleries.data)
 			.catch((err) => console.log('ERROR: ' + err));
 };
 
 exports.getGallery = function(id) {
-	return axios.get(`${clientUrl}/api/gallery/${id}`)
+	return axios.get(`${apiUrl}/api/gallery/${id}`)
 		.then((gallery) => gallery.data)
 		.catch((err) => console.log('ERROR: ' + err));
 };
 
-exports.addGallery = function(title, path, dirname, evtdate, text) {
-	return axios.post(`${clientUrl}/api/gallery`, {
+exports.addGallery = function(title, path, dirname, evtdate, text, token) {
+	return axios.post(`${apiUrl}/api/gallery`, {
 		title,
 		path,
 		dirname,
 		evtdate,
-		text
+		text,
+		necc_token: token
 	})
-		.then() //TODO
+		.then((gallery) => {
+			
+		}) //TODO
 		.catch(err => console.error(err));
 };
 
@@ -94,7 +97,7 @@ exports.addGallery = function(title, path, dirname, evtdate, text) {
 
 
 exports.createUser = function(id, fname, lname, email, sub) {
-	return axios.post(`${clientUrl}/api/user`, {
+	return axios.post(`${apiUrl}/api/user`, {
 		purchase_id: id,
 		fname,
 		lname,
@@ -110,15 +113,19 @@ exports.createUser = function(id, fname, lname, email, sub) {
 	});
 };
 
-
+exports.getUser = function(id) {
+	const userId = id;
+	return axios.get(`${apiUrl}/api/user/${userId}`)
+	.then((user) => user.data)
+	.catch(err => console.error(err));
+}
 
 
 /* PAYPAL FUNCTIONS 
 ----------------------*/
 
 exports.getToken = function(client_id, secret) {
-
-	const url = 'https://api.sandbox.paypal.com/v1/oauth2/token';
+	const url = `${config.paypal.url}/v1/oauth2/token`;
 	const data = {
 		grant_type: 'client_credentials'
 	};

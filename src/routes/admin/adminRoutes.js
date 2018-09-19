@@ -7,9 +7,4 @@ router.route('/')
 	.post(controller.post); // Login route
 
 
-router.route('/main')
-	.get()
-	.post()
-
-
 module.exports = router;

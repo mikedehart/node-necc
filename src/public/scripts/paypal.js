@@ -29,11 +29,10 @@ paypal.Button.render({
 	    	})
 	    	.then(function(res) {
 	    		if(res.url) {
-
+	    			window.location = res.url;
 	    		} else {
 	    			window.alert('Error processing purchase!');
 	    		}
-	    		window.location = res.url;
 	    	})
 	    	.catch(err => window.alert(err));
 	    }

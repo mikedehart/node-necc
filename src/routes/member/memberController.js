@@ -1,7 +1,6 @@
 const axios = require('axios');
 const clientApi = require('../../api');
 const config = require('../../conf/conf');
-const User = require('../../api/user/userModel');
 const mongoose = require('mongoose');
 
 
@@ -26,7 +25,7 @@ exports.post = function(req, res, next) {
 				});
 			}
 		})
-		.catch((err) => console.error(err));
+		.catch((err) => next(err));
 };
 
 
@@ -59,8 +58,8 @@ exports.getPayment = function(req, res, next) {
 						description: 'NE Clemson Club Membership'
 					}],
 					redirect_urls: {
-						return_url: config.paypal.accept,
-						cancel_url: config.paypal.fail
+						return_url: 'http://localhost:3000',
+						cancel_url: 'http://localhost:3000'
 					}
 				},
 				json: true,
@@ -70,9 +69,9 @@ exports.getPayment = function(req, res, next) {
 				.then((payment) => {
 					res.json({ id: payment.data.id });
 				})
-				.catch(err => console.error(err));
+				.catch(err => next(err));
 		})
-		.catch(err => console.error(err));
+		.catch(err => next(err));
 };
 
 // Called when user authorized payment
@@ -118,31 +117,31 @@ exports.authPayment = function(req, res, next) {
 									//res.status(501).send('Error adding user! Duplicate email.');
 									next(new Error('Error adding user! ' + user));
 								} else {
-									let url = `${config.client.url}/members/${user.id}?authkey=${user.plainkey}`;
+									let url = `${config.client.url}/members/${user.id}?key=${user.plainkey}`;
 									res.json({
 										url
 									});
 								}
 							})
-							.catch((err) => console.error(err));
+							.catch((err) => next(err));
 					} else {
 						res.send('members/pay-failed');
 					}
 				})
 				.catch(err => next(err));
 		})
-		.catch(err => console.error(err));
+		.catch(err => next(err));
 };
 
 
 /* ---------- ID ROUTES ---------- */
 
 
-//  Called after confirmation. A valid purchase_id must
-// be saved after payment approval.
+// Called after authPayment to confirm user and key recieved, then
+// re
 
 exports.confirmation = function(req, res, next, id) {
-	const authKey = req.query.authkey;
+	const authKey = req.query.key;
 	const userId = id.toString();
 
 	if(!mongoose.Types.ObjectId.isValid(userId)) {
@@ -155,10 +154,9 @@ exports.confirmation = function(req, res, next, id) {
 			message: 'Authorization key not sent!'
 		});
 	} else {
-		User.findById(userId)
+		clientApi.getUser(userId)
 			.then((user) => {
 				if(!user) {
-					// send to failed page
 					res.render('members/pay-failed', { 
 						message: 'User was not added to the database!'
 					});
@@ -172,6 +170,6 @@ exports.confirmation = function(req, res, next, id) {
 					});
 				}
 			})
-			.catch((err) => console.error(err));
+			.catch(err => next(err));
 	}
 };
