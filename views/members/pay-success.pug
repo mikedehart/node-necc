@@ -3,20 +3,37 @@ extends ../layout.pug
 block header
 	div(class="jumbotron bg-success necc-jumbo p-3 p-md-5 text-white")
 		div(class="col-md-6 px-0")
-			h1(class="display-4 text-center") Purchase Successful!
+			h1(class="display-4 text-center") Success!
 
 block content
 	div(class="row")
 		p(class="lead") Welcome to the New England Clemson Club! We’re glad to have you as part of our family and hope to see you at an event soon! Your purchase will help fund future events and provide access to member-only benefits.
 		p(class="lead") If any of the information below is missing or incorrect, please 
-			a(class="font-weight-bold" href="#" onclick="getEmail();") email us
+			a(class="font-weight-bold" href="#" onclick="emailErr();") email us
 	div(class="row")
 		p(class="lead font-weight-bold") Save the below information for your records!
 	div(class="row mt-3 mb-3")
-		h4 Purchase details:
+		h4(class="font-weight-bold") Order details:
 	div(class="row")
 		div(class="col-md-6")
-			label(for="pID") Purchase ID:
+			label(for="ordID") Order ID:
+			h5(id="ordID" class="ordID")= sale_id
+
+			label(for="payStat") Payment Status:
+			h5(id="payStat" class="payStat")= pay_status
+
+		div(class="col-md-6")
+			label(for="ordStat") Order Status:
+			h5(id="ordStat" class="ordStat")= order_status
+
+			label(for="amt") Amount Charged:
+			h5(id="amt" class="amt")= amount
+
+	div(class="row mt-3 mb-3")
+		h4(class="font-weight-bold") Account details:
+	div(class="row")
+		div(class="col-md-6")
+			label(for="pID") Payment ID:
 			h5(id="pID" class="pID")= purchase_id
 
 			label(for="pID") Email:
@@ -32,7 +49,7 @@ block content
 		div(class="col-md-12 mt-3")
 			label(for="authKey") Authorization Key:
 			h5(id="authKey" class="authKey bg-warning p-3 text-center")= auth
-			p Your authorization key is your password for accessing the members-only page.
+			p Your email is your username and authorization key is your password for accessing the members-only page.
 			p(class="font-weight-bold text-danger") For security we do not store this key and it cannot be recovered, so store it someplace safe!
 
 	div(class="row")
@@ -44,4 +61,3 @@ block content
 
 	hr(class="featurette-divider")
 block scripts
-	script(src="/scripts/clientutils.js" type="text/javascript")

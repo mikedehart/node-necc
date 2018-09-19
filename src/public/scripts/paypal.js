@@ -3,10 +3,9 @@ paypal.Button.render({
 	    env: 'sandbox',
 	    commit: true,
 	    client: {
-	      sandbox: 'AT-t9dmPqy-6PDNMHhAIE8uIN7HIf2YO_JlB2SP2nCjrwNazPU-DsQVd-UuALFRir3J5myYcakH6p5Ol',
-	      //production: 'AT-t9dmPqy-6PDNMHhAIE8uIN7HIf2YO_JlB2SP2nCjrwNazPU-DsQVd-UuALFRir3J5myYcakH6p5Ol'
+	      sandbox: 'AYz1S9YsAPkZxv3b25F1o1HIzjITRrm1UMuEctKXPCGdCYsBAiuq1pUn4nRwd3WFZe9Efl28Fi5RcFi5',
+	      //production: 'AUa8TTQdvds_XTwBWvFUBNxu6beWJSGyUX54klQO_un5j08kmRPCYKtkohSnYAvJ9scbfNY92y-fvQlS'
 	    },
-	    // Customize button (optional)
 	    locale: 'en_US',
 	    style: {
 	      size: 'medium',
@@ -31,7 +30,7 @@ paypal.Button.render({
 	    		if(res.url) {
 	    			window.location = res.url;
 	    		} else {
-	    			window.alert('Error processing purchase!');
+	    			window.alert('Error processing purchase: ' + res.name + ' ' + res.message);
 	    		}
 	    	})
 	    	.catch(err => window.alert(err));

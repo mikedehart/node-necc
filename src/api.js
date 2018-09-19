@@ -61,20 +61,20 @@ exports.getCal = function() {
 		const calUrl = `https://www.googleapis.com/calendar/v3/calendars/${calName}/events?key=${calKey}&timeMin=${currDate}&maxResults=8&singleEvents=true&orderBy=startTime`;
 		return axios.get(calUrl)
 			.then((res) => res)
-			.catch((err) => console.log('ERROR: ' + err));
+			.catch((err) => console.error('ERROR: ' + err));
 	}
 };
 
 exports.getGalleries = function() {
 		return axios.get(`${apiUrl}/api/gallery`)
 			.then((galleries) => galleries.data)
-			.catch((err) => console.log('ERROR: ' + err));
+			.catch((err) => console.error('ERROR: ' + err));
 };
 
 exports.getGallery = function(id) {
 	return axios.get(`${apiUrl}/api/gallery/${id}`)
 		.then((gallery) => gallery.data)
-		.catch((err) => console.log('ERROR: ' + err));
+		.catch((err) => console.error('ERROR: ' + err));
 };
 
 exports.addGallery = function(title, path, dirname, evtdate, text, token) {
@@ -84,11 +84,9 @@ exports.addGallery = function(title, path, dirname, evtdate, text, token) {
 		dirname,
 		evtdate,
 		text,
-		necc_token: token
+		access_token: token
 	})
-		.then((gallery) => {
-			
-		}) //TODO
+		.then((gallery) => gallery.data)
 		.catch(err => console.error(err));
 };
 
@@ -148,4 +146,4 @@ exports.getToken = function(client_id, secret) {
 	return axios(options)
 		.then((res) => res.data)
 		.catch(err => console.error(err));
-}
+};

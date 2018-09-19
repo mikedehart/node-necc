@@ -23,7 +23,6 @@ exports.get = function(req, res, next) {
 
 			const imgArray = localArray.map((gallery) => {
 				const imgPath = path.join(__dirname + `../../../public${gallery.path}`);
-				console.log(`Img path is: ${imgPath}`);
 				const imgs = fs.readdirSync(imgPath);
 				gallery.img = gallery.path + '/' + imgs[0];
 				return gallery;
@@ -44,14 +43,9 @@ exports.post = function(req, res, next) {
 	dir = dir.replace(' ','');
 	const imgpath = `/img/events/${dir}`;
 	const fullpath = path.join(__dirname + `../../../public${imgpath}`);
-	console.log(`FULL PATH: ${fullpath}`);
 	// File vars
-	const filename = req.file.originalname;
-	const file = req.file.buffer;
-	const mimetype = req.file.mimetype;
-
-
-	console.log(req.file);
+	const filename = req.file.filename;
+	const filePath = req.file.path;
 
 	// JWT
 	const cookie = req.signedCookies['necc_token'];
@@ -59,42 +53,54 @@ exports.post = function(req, res, next) {
 	// First, we need to check for JWT auth
 	if(cookie) {
 		// Then, check for file, create directory, and extract it
-		if(file) {
+		if(req.file) {
 			// Create the directory
 			if(!fs.existsSync(fullpath)) {
-				console.log('dir doesnt exist...');
 				fs.mkdir(fullpath, function(err) {
 					if(err) {
 						res.render('error', {
-							title: 'Directory already exists',
-							message: 'Chosen directory name already exists or doesn not have create permission in the filesystem!'
+							title: 'Error creating directory',
+							message: 'An error was thrown attempting to create the directory'
 						});
 					} else {
-						extract(file, {dir: "/tmp/" }, function(err) {
+						extract(filePath, { dir: fullpath }, function(err) {
 							if(err) {
 								return res.render('error', {
 									title: err,
 									message: err.stack
 								});
 							} else {
-								//TODO: Validate files exist
-								// THEN
-								// clientApi.addGallery(title, imgpath, dir, date, text, cookie)
-								// 	.then()
-								// 	.catch();
-								console.log('REACHED END?');
-								console.log()
-
+								fs.readdir(fullpath, (err, files) => {
+									if(err) {
+										return res.render('error', {
+											title: err,
+											message: err.stack
+										});
+									} else {
+										clientApi.addGallery(title, imgpath, dir, date, text, cookie)
+											.then((gallery) => {
+												if(!gallery) {
+													return res.render('error', {
+														title: 'Gallery not added!',
+														message: 'Adding gallery to db failed for some reason...'
+													});
+												} else {
+													return res.send('Gallery successfully added! Sorry this page isnt prettier. Click refresh to see image galleries');
+												}
+											})
+											.catch(err => next(err));
+									}
+								});
 							}
 						});
 
 					}
 				});
 			} else {
-				// PAth does exist...
+				// Path does exist...
 				res.render('error', {
 					title: 'Directory already exists',
-					message: 'Chosen directory name already exists or doesn not have create permission in the filesystem!'
+					message: 'Chosen directory name already exists!'
 				});
 			}
 		} else {

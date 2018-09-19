@@ -1,12 +1,11 @@
 const router = require('express').Router();
 const controller = require('./galleryController');
 const path = require('path');
+const config =  require('../../conf/conf');
 
 // File upload middleware
 const multer = require('multer');
-const galPath = path.join(__dirname + `../../../public/img/events/`);
-console.log(galPath);
-const storage = multer.diskStorage({ dest: galPath });
+const storage = multer.diskStorage({ });
 const upload = multer({ storage: storage });
 
 

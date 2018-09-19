@@ -55,8 +55,19 @@ exports.getPayment = function(req, res, next) {
 							total: '25.00',
 							currency: 'USD'
 						},
-						description: 'NE Clemson Club Membership'
+						description: 'NE Clemson Club Membership',
+						item_list: {
+							items: [{
+								name: 'NECC Club Membership',
+								description: "One-year membership for New England Clemson Club",
+								quantity: '1',
+								price: '25',
+								sku: 'necc1',
+								currency: 'USD'
+							}]
+						}
 					}],
+					note_to_payer: "Questions or issues with your order? Email us at info@newenglandclemsonclub.com",
 					redirect_urls: {
 						return_url: 'http://localhost:3000',
 						cancel_url: 'http://localhost:3000'
@@ -69,9 +80,9 @@ exports.getPayment = function(req, res, next) {
 				.then((payment) => {
 					res.json({ id: payment.data.id });
 				})
-				.catch(err => next(err));
+				.catch(err => res.json({ name: err.name, message: err.message}));
 		})
-		.catch(err => next(err));
+		.catch(err => res.json({ name: err.name, message: err.message}));
 };
 
 // Called when user authorized payment
@@ -88,13 +99,7 @@ exports.authPayment = function(req, res, next) {
 					'Content-Type': 'application/json'
 				},
 				data: {
-					payer_id: payerID,
-					transactions: [{
-						amount: {
-							total: '25.00',
-							currency: 'USD'
-						}
-					}]
+					payer_id: payerID
 				},
 				json: true,
 				url: config.paypal.url + '/v1/payments/payment/' + paymentID + '/execute'
@@ -103,8 +108,14 @@ exports.authPayment = function(req, res, next) {
 			axios(options)
 				.then((payment) => {
 					const payState = payment.data.state;
+					if(payState === 'approved' || 'completed') {
 
-					if(payState === 'approved') {
+						// Sale details (need to be passed at query params)
+						const sale_id = payment.data.transactions[0].related_resources[0].sale.id || "";
+						const status = payment.data.transactions[0].related_resources[0].sale.state || "";
+						const amt = payment.data.transactions[0].amount.total;
+
+						// User details (used to add user to database)
 						const cEmail = payment.data.payer.payer_info.email;
 						const cFname = payment.data.payer.payer_info.first_name;
 						const cLname = payment.data.payer.payer_info.last_name;
@@ -115,33 +126,44 @@ exports.authPayment = function(req, res, next) {
 							.then((user) => {
 								if(!user) {
 									//res.status(501).send('Error adding user! Duplicate email.');
-									next(new Error('Error adding user! ' + user));
+									res.json({ name: 'Error adding user!', message: 'User was not added to the database!' });
 								} else {
-									let url = `${config.client.url}/members/${user.id}?key=${user.plainkey}`;
+									let url = `${config.client.url}/members/${user.id}?key=${user.plainkey}\
+									&sale_id=${sale_id}&status=${status}&pay_status=${payState}&amt=${amt}`;
 									res.json({
 										url
 									});
 								}
 							})
-							.catch((err) => next(err));
+							.catch((err) => res.json({ name: err.name, message: err.message}));
 					} else {
-						res.send('members/pay-failed');
+						console.error('pay state not approved');
+						console.error(payment.data);
+						res.json({ name: payment.data.state, message: 'Payment status not approved' });
+
 					}
 				})
-				.catch(err => next(err));
+				.catch(err => {
+					console.error(`Error calling paypal auth: ${err.stack}`);
+					res.json({ name: err.data.name, message: err.message})});
 		})
-		.catch(err => next(err));
+		.catch(err => res.json({ name: err.name, message: err.message}));
 };
 
 
 /* ---------- ID ROUTES ---------- */
 
-
 // Called after authPayment to confirm user and key recieved, then
 // re
 
 exports.confirmation = function(req, res, next, id) {
+	// Get query params
 	const authKey = req.query.key;
+	const sale_id = req.query.sale_id;
+	const orderState = req.query.status;
+	const payState = req.query.pay_status;
+	const amount = req.query.amt;
+
 	const userId = id.toString();
 
 	if(!mongoose.Types.ObjectId.isValid(userId)) {
@@ -166,7 +188,11 @@ exports.confirmation = function(req, res, next, id) {
 						auth: authKey,
 						email: user.email,
 						name: user.fname + ' ' + user.lname,
-						id: user._id
+						id: user._id,
+						sale_id,
+						pay_status: payState,
+						order_status: orderState,
+						amount
 					});
 				}
 			})
