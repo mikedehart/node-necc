@@ -1,0 +1,25 @@
+extends layout.pug
+
+block header
+	div(class="jumbotron necc-jumbo portal-jumbo p-3 p-md-5 text-white")
+		div(class="col-md-6 px-0")
+			h1(class="display-3") Let’s turn Boston 
+				span(class="text-clemson") orange!
+block content
+	div(class="row")
+		h3(class="display-4") Clemson @ Boston College 
+		h4(class="mt-3 ml-3 text-muted") Nov. 10
+	div(class="row")
+		p(class="lead") The New England Clemson Club has partnered with the University, Clemson Athletics, and IPTAY to reserve a block of seats at the Clemson vs. Boston College game on 11/10. Tickets are available exclusively to NECC members only on a first-come, first served basis. Become a member today to take advantage of this benefit and more!
+
+	div(class="row")
+		a(class="btn btn-clemson" href="https://neclemsonclub.com/membership") Membership
+
+	div(class="row mt-3")
+		p Already a member? If you purchased membership in-person, 
+			a(href="#" onclick="emailQuestion();") email us 
+			| directly to purchase tickets to the game!
+
+
+
+block scripts

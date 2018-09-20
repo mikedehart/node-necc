@@ -64,6 +64,11 @@ app.get('/membership', (req, res, next) => {
 	res.render('membership', { title: 'Membership' });
 })
 
+// Route for landing pages
+app.get('/announcements', (req, res, next) => {
+	res.render('announcements');
+})
+
 
 // ------- Final Error Handling -------
 
