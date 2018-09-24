@@ -116,7 +116,19 @@ exports.getUser = function(id) {
 	return axios.get(`${apiUrl}/api/user/${userId}`)
 	.then((user) => user.data)
 	.catch(err => console.error(err));
-}
+};
+
+
+exports.getAllUsers = function(token) {
+	const _token = token;
+	if(!_token) {
+		return new Error({ title: 'Token not sent to API', message: 'No JWT token was sent. Aborting...'});
+	} else {
+		return axios.get(`${apiUrl}/api/user/`)
+			.then(users => users.data)
+			.catch(err => console.error(err));
+	}
+};
 
 
 /* PAYPAL FUNCTIONS 

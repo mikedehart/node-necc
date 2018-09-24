@@ -65,6 +65,7 @@ html(lang="en")
 				div(class="col-md-6 form-div")
 					h2(class="display-4 text-center") Get members
 					p(class="lead") Export list of members signed up from the site. List is in CSV format.
-					button(class="btn btn-clemson btn-block" type="button") Export
+					form(method="get" action="/admin/export")
+						button(class="btn btn-clemson btn-block" type="submit") Export
 				
 

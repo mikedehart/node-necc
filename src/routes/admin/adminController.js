@@ -40,3 +40,31 @@ exports.post = function(req, res, next) {
 };
 
 
+exports.exportUsers = function(req, res, next) {
+	const token =req.signedCookies['necc_token'];
+	if(!token) {
+		res.render('error', {
+			title: 'Token missing!',
+			messge: 'Your admin token is missing. Try logging in again and make sure cookies are enabled.'
+		});
+	} else {
+		clientApi.getAllUsers(token)
+			.then((users) => {
+				let userArray = [];
+				userArray.push('FIRST_NAME, LAST_NAME, EMAIL, USER_ID, PURCHASE_ID, PURCHASE_DATE');
+				users.map((user) => {
+					userArray.push(`${user.fname},${user.lname},${user.email},${user._id},${user.purchase_id},${user.signdate}`);
+				});
+				let dataString = userArray.join('\n');
+				res.setHeader('Content-Disposition', 'attachment; filename=users.csv');
+				res.setHeader('Content-Type', 'text/csv');
+				console.log(dataString);
+				res.status(200).send(dataString);
+			})
+			.catch(err => next(err));
+
+	}
+
+};
+
+

@@ -7,4 +7,8 @@ router.route('/')
 	.post(controller.post); // Login route
 
 
+router.route('/export')
+	.get(controller.exportUsers) // Export user information (requires JWT)
+
+
 module.exports = router;
