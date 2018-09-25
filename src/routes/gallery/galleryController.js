@@ -20,18 +20,26 @@ exports.get = function(req, res, next) {
 	clientApi.getGalleries()
 		.then((galleries) => {
 			const localArray = galleries;
-
-			const imgArray = localArray.map((gallery) => {
-				const imgPath = path.join(__dirname + `../../../public${gallery.path}`);
-				const imgs = fs.readdirSync(imgPath);
-				gallery.img = gallery.path + '/' + imgs[0];
-				return gallery;
-			});
-			res.render('gallery', {
-				albums: imgArray,
-				title: 'Events'
-			});
+			try {	// If albums have been deleted, but still in db, error thrown
+				const imgArray = localArray.map((gallery) => {
+					const imgPath = path.join(__dirname + `../../../public${gallery.path}`);
+					const imgs = fs.readdirSync(imgPath);
+					gallery.img = gallery.path + '/' + imgs[0];
+					return gallery;
+				});
+				res.render('gallery', {
+					albums: imgArray,
+					title: 'Events'
+				});
+			} catch(e) {
+				console.error(e);
+				res.render('gallery', {
+					albums: [],
+					title: 'No Events listed!'
+				});
+			}
 		})
+		.catch(err => next(err));
 };
 
 exports.post = function(req, res, next) {

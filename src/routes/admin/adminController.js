@@ -58,7 +58,6 @@ exports.exportUsers = function(req, res, next) {
 				let dataString = userArray.join('\n');
 				res.setHeader('Content-Disposition', 'attachment; filename=users.csv');
 				res.setHeader('Content-Type', 'text/csv');
-				console.log(dataString);
 				res.status(200).send(dataString);
 			})
 			.catch(err => next(err));
