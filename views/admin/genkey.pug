@@ -1,0 +1,60 @@
+doctype html
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+		meta(name="description" content="NECC Console")
+		meta(name="author" content="Mike DeHart")
+		title NECC Console
+
+		// Favicon
+		link(rel="icon" href="img/favicon.ico")
+
+		// Bootstrap CSS
+		link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous")
+
+		// Custom CSS
+		link(href="/css/base.css" rel="stylesheet" type="text/css")
+
+	body
+		main(role="main" class="container")
+			div(class="row")
+				div(class="col-md-12 col-sm-12")
+					h1(class="display-3 text-center") Search Users
+
+			div(class="row")
+				div(class="col-md-12")
+					if users
+						each user in users
+							div(class="col-md-12")
+								form(method="post" action="/admin/genkey")
+									div(class="form-group")
+										input(type="hidden" name="userid" id="userid" class="form-control" value=user._id)
+									div(class="form-row")
+										div(class="form-group col-md-4")
+											label(for="fname") First Name
+											input(type="text" disabled="disabled" id="fname" class="form-control" value=user.fname)
+
+										div(class="form-group col-md-4")
+											label(for="lname") Last Name
+											input(type="text" disabled="disabled" id="lname" class="form-control" value=user.lname)
+
+										div(class="form-group col-md-4")
+											label(for="lname") Email
+											input(type="text" disabled="disabled" id="lname" class="form-control" value=user.email)
+									button(class="btn btn-clemson" type="submit") Generate Key
+							hr
+					else if updatedUser
+						div(class="col-md-12")
+							h3 Updated credentials for user: 
+								span= updatedUser.fname 
+								span= updatedUser.lname
+							div(class="row")
+								h4 Email: 
+									span= updatedUser.email
+							div(class="row")
+								h4 Key: 
+									span= updatedUser.plainkey
+					else
+						h2 No users found!
+

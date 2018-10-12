@@ -25,6 +25,7 @@ html(lang="en")
 			div(class="row")
 				div(class="col-md-6 form-div")
 					h2(class="display-4 text-center mb-3") Gallery Upload
+					p(class="lead") Upload pictures and add a gallery to the site.
 					form(method="post" action="/gallery" novalidate enctype="multipart/form-data")
 						div(class="form-group")
 							label(for="gTitle") Title
@@ -67,5 +68,14 @@ html(lang="en")
 					p(class="lead") Export list of members signed up from the site. List is in CSV format.
 					form(method="get" action="/admin/export")
 						button(class="btn btn-clemson btn-block" type="submit") Export
-				
-
+					hr(class="mt-4")
+					h2(class="display-4 text-center") Generate Key
+					p(class="lead") Re-generate a membership key for a user already in the database
+					form(method="post" action="/admin/search")
+						div(class="form-row")
+							div(class="form-group col-md-12")
+								label(for="email") Email:
+								input(type="text" name="email" class="form-control" id="email")
+								small(class="form-text text-muted" id="txtHelp") PayPal email used during signup.
+						div(class="form-row")
+							button(class="btn btn-clemson btn-block" type="submit") Search

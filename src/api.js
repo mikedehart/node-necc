@@ -130,6 +130,20 @@ exports.getAllUsers = function(token) {
 	}
 };
 
+exports.genKey = function(id, token) {
+	const userId = id;
+	const cookie = token;
+	if(!cookie) {
+		return new Error({ title: 'Token not sent to API', message: 'No JWT token was sent. Aborting...'});
+	} else {
+		return axios.post(`${apiUrl}/api/user/${userId}`, {
+			access_token: cookie
+		})
+		.then((user) => user.data)
+		.catch(err => console.error(err));
+	}
+};
+
 
 /* PAYPAL FUNCTIONS 
 ----------------------*/
