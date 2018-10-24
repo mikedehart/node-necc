@@ -112,7 +112,6 @@ exports.searchUsers = function(req, res, next) {
 					let userArray = users.filter((user) => {
 						if(user.email === email) return user;
 					});
-					console.log(userArray);
 					res.render('admin/genkey', {
 						users: userArray
 					});
